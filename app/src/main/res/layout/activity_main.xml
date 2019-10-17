@@ -1,25 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/stars"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnWatchList"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/btnWatchList" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/btnSearch" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvTrending"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:text="@string/tvTrending"
+            android:gravity="center_vertical"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="50sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#99FFFFFF">
+
+            <TextView
+                android:id="@+id/tvUpcoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvUpcoming"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTopRated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvTopRated"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="100sp"
+                    android:layout_height="200sp"
+                    android:layout_margin="10sp"
+                    app:srcCompat="@drawable/images" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

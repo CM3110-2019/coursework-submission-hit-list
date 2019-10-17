@@ -2,8 +2,15 @@
 <resources>
     <string name="app_name">Hit List</string>
 
+    <!--menu-->
     <string name="btnWatchList">Voir la watch list</string>
     <string name="btnSearch">Chercher un film</string>
+
+    <!--main activity-->
+    <string name="tvTrending">Tendance</string>
+    <string name="tvTopRated">Les mieux notés</string>
+    <string name="tvUpcoming">A l\'affiche</string>
+
     <string name="overview">Synopsis</string>
     <string name="irish">The Irishman</string>
     <string name="filmSample">La vie de Frank "The Irishman" Sheeran, soupçonné d\'avoir fait disparaitre le dirigeant syndicaliste Jimmy Hoffa en 1975.</string>

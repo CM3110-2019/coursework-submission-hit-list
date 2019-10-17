@@ -18,21 +18,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnWatchList = findViewById(R.id.btnWatchList);
-        btnWatchList.setOnClickListener(this);
-        Button btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnWatchList:
-                startActivity(new Intent(this, WatchListActivity.class));
-                break;
-            case R.id.btnSearch:
-                startActivity(new Intent(this, SearchActivity.class));
-                break;
         }
     }
 
