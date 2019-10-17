@@ -1,13 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Hit List</string>
-    <string name="watch_list">Watch List</string>
+
+    <!--menu-->
+    <string name="btnWatchList">Go to the watch list</string>
+    <string name="btnSearch">Search a movie</string>
+
+    <!--main activity-->
+    <string name="tvTrending">Trending</string>
+    <string name="tvTopRated">Top rated</string>
+    <string name="tvUpcoming">Upcoming</string>
+
+
     <string name="overview">Overview</string>
-    <string name="Trending">Trending</string>
-    
     <string name="irish">The Irishman</string>
     <string name="filmSample">World War II veteran and mob hitman Frank "The Irishman" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa.</string>
 
-    <string name="year2019">2019</string>
-    <string name="Category1">Drama/Crime</string>
-    <string name="MoreInfo">More Info</string>
 </resources>

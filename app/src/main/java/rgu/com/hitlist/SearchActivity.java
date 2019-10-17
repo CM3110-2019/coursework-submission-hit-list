@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
     MyRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watch_list);
+        setContentView(R.layout.activity_search);
 
         // data to populate the RecyclerView with
         ArrayList<Movie> data = new ArrayList<>();
@@ -29,7 +29,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+        RecyclerView recyclerView = findViewById(R.id.rvSearch);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerViewAdapter(this, data);
         adapter.setClickListener(this);
@@ -41,4 +41,6 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, FilmDescriptionActivity.class));
     }
+
+
 }
