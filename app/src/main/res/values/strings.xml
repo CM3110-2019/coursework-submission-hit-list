@@ -10,6 +10,8 @@
     <string name="tvTrending">Trending</string>
     <string name="tvTopRated">Top rated</string>
     <string name="tvUpcoming">Upcoming</string>
+    <string name="tvCategory">Drama/Crime</string>
+    <string name="btnMoreInfo">More Info</string>
 
 
     <string name="overview">Overview</string>

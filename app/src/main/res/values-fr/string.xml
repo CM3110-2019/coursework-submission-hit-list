@@ -10,6 +10,8 @@
     <string name="tvTrending">Tendance</string>
     <string name="tvTopRated">Les mieux notés</string>
     <string name="tvUpcoming">A l\'affiche</string>
+    <string name="tvCategory">Drame/le crime</string>
+    <string name="btnMoreInfo">Plus d\'informations</string>
 
     <string name="overview">Synopsis</string>
     <string name="irish">The Irishman</string>

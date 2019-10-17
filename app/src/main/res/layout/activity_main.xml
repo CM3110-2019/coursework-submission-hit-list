@@ -1,104 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stars"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="@drawable/mainbackg"
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="181dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        android:text="@string/tvTrending"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="372dp"
+        android:layout_height="592dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:srcCompat="@android:color/background_light" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="333dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="?attr/colorButtonNormal" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="333dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="?attr/colorButtonNormal" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="128dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/irish"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="32dp"
+        android:text="@string/tvCategory"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <TextView
-            android:id="@+id/tvTrending"
-            android:layout_width="match_parent"
-            android:layout_height="150sp"
-            android:text="@string/tvTrending"
-            android:gravity="center_vertical"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+    <Button
+        android:id="@+id/btnMoreInfo1"
+        android:layout_width="124dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:background="#E06158"
+        android:text="@string/btnMoreInfo"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#99FFFFFF">
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="130dp"
+        android:layout_height="155dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.306"
+        app:srcCompat="@drawable/images" />
 
-            <TextView
-                android:id="@+id/tvUpcoming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tvUpcoming"
-                android:textSize="30sp" />
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="128dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/irish"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/tvCategory"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
+    <Button
+        android:id="@+id/btnMoreInfo2"
+        android:layout_width="124dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="#E06158"
+        android:text="@string/btnMoreInfo"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvTopRated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tvTopRated"
-                android:textSize="30sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="100sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="10sp"
-                    app:srcCompat="@drawable/images" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="109dp"
+        android:layout_height="183dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:srcCompat="@drawable/images" />
+</androidx.constraintlayout.widget.ConstraintLayout>
