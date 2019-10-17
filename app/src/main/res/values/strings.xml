@@ -2,7 +2,12 @@
     <string name="app_name">Hit List</string>
     <string name="watch_list">Watch List</string>
     <string name="overview">Overview</string>
+    <string name="Trending">Trending</string>
     
     <string name="irish">The Irishman</string>
     <string name="filmSample">World War II veteran and mob hitman Frank "The Irishman" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa.</string>
+
+    <string name="year2019">2019</string>
+    <string name="Category1">Drama/Crime</string>
+    <string name="MoreInfo">More Info</string>
 </resources>
