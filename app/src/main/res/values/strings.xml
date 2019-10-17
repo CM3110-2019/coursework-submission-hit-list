@@ -5,4 +5,6 @@
     
     <string name="irish">The Irishman</string>
     <string name="filmSample">World War II veteran and mob hitman Frank "The Irishman" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa.</string>
+    <string name="watchlist">Watch List</string>
+    <string name="searchbutton">Search</string>
 </resources>
