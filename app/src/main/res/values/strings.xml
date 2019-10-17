@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Hit List</string>
-    <string name="watch_list">Watch List</string>
-    <string name="overview">Overview</string>
-    
-    <string name="irish">The Irishman</string>
-    <string name="filmSample">World War II veteran and mob hitman Frank "The Irishman" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa.</string>
+
+    <string name="btnWatchList">Go to the watch list</string>
+    <string name="btnSearch">Search a movie</string>
 </resources>
