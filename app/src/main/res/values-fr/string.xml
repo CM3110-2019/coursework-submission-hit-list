@@ -4,4 +4,8 @@
 
     <string name="btnWatchList">Voir la watch list</string>
     <string name="btnSearch">Chercher un film</string>
+    <string name="overview">Synopsis</string>
+    <string name="irish">The Irishman</string>
+    <string name="filmSample">La vie de Frank "The Irishman" Sheeran, soupçonné d\'avoir fait disparaitre le dirigeant syndicaliste Jimmy Hoffa en 1975.</string>
+
 </resources>
