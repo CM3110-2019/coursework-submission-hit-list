@@ -19,6 +19,7 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        setTitle(R.string.titleSearch);
 
         // data to populate the RecyclerView with
         ArrayList<Movie> data = new ArrayList<>();

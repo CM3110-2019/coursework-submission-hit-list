@@ -19,6 +19,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_list);
+        setTitle(R.string.titleWatchList);
 
         // data to populate the RecyclerView with
         ArrayList<Movie> data = new ArrayList<>();

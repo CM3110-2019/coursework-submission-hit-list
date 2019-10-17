@@ -2,6 +2,10 @@
 <resources>
     <string name="app_name">Hit List</string>
 
+    <!--titles-->
+    <string name="titleWatchList">Watch List</string>
+    <string name="titleSearch">Search</string>
+
     <!--menu-->
     <string name="btnWatchList">Go to the watch list</string>
     <string name="btnSearch">Search a movie</string>
@@ -11,9 +15,19 @@
     <string name="tvTopRated">Top rated</string>
     <string name="tvUpcoming">Upcoming</string>
 
+    <!--search activity-->
+    <string name="placeholderSearch">Search a movie</string>
 
-    <string name="overview">Overview</string>
-    <string name="irish">The Irishman</string>
-    <string name="filmSample">World War II veteran and mob hitman Frank "The Irishman" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa.</string>
+    <!--filmDescription activity-->
+    <string name="tvOverview">Overview</string>
+    <string name="tvTagline">Tagline</string>
+    <string name="tvSynopsis">Synopsis</string>
+    <string name="tvReleaseDate">Release date</string>
+    <string name="tvGenre">Genre</string>
+    <string name="tvProdCompanies">Production companies</string>
+    <string name="tvProdCountries">Production countries</string>
+    <string name="tvBudget">Budget</string>
+    <string name="tvVoteAverage">Vote average</string>
+    <string name="tvVoteCount">Number of votes</string>
 
 </resources>

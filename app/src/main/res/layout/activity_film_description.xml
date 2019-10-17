@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/irish"
+            android:text="The Irish Man"
             android:textSize="32sp"
             android:textAlignment="center"/>
     </LinearLayout>
@@ -44,14 +44,14 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_height="wrap_content"
-            android:text="@string/overview" />
+            android:text="@string/tvSynopsis" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5px"
-            android:text="@string/filmSample"
+            android:text="World War II veteran and mob hitman Frank The Irishman Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa."
             android:textSize="18sp"
             android:textStyle="italic" />
     </LinearLayout>
@@ -66,7 +66,7 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_height="wrap_content"
-            android:text="Release date" />
+            android:text="@string/tvReleaseDate" />
 
         <TextView
             android:id="@+id/textView5"
@@ -88,7 +88,7 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_height="wrap_content"
-            android:text="Genre" />
+            android:text="@string/tvGenre" />
 
         <TextView
             android:id="@+id/textView7"
@@ -109,7 +109,7 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_height="wrap_content"
-            android:text="User rating" />
+            android:text="@string/tvVoteAverage" />
 
         <TextView
             android:id="@+id/textView9"
