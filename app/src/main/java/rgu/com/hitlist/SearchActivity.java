@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,7 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         setTitle(R.string.titleSearch);
+        handleIntent(getIntent());
 
         // data to populate the RecyclerView with
         ArrayList<Movie> data = new ArrayList<>();
@@ -71,6 +73,21 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+        Toast.makeText(this, "new intent", Toast.LENGTH_LONG).show();
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+            setTitle(getString(R.string.titleSearchQuery, query));
         }
     }
 

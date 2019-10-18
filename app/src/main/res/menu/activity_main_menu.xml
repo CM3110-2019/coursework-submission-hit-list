@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/search_white"
+        android:title="@string/titleSearch"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.SearchView"/>
 
     <item
         android:id="@+id/actionWatchList"
         android:icon="@drawable/eye_white"
         android:title="@string/btnWatchList"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:icon="@drawable/search_white"
-        android:id="@+id/actionSearch"
-        android:title="@string/btnSearch"
-        app:showAsAction="ifRoom" />
-
-
 </menu>
