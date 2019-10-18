@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/actionMovies"
+        android:id="@+id/actionMovies"/>
+    <item
+        android:title="@string/actionPeople"
+        android:id="@+id/actionPeople"/>
+    <item
+        android:title="@string/actionTV"
+        android:id="@+id/actionTV"/>
+    <item
+        android:title="@string/actionCompanies"
+        android:id="@+id/actionCompanies"/>
+</menu>

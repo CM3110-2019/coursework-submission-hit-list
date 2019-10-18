@@ -6,7 +6,7 @@
     <string name="titleWatchList">Watch List</string>
     <string name="titleSearch">Search</string>
 
-    <!--menu-->
+    <!--activity_main_menu-->
     <string name="btnWatchList">Go to the watch list</string>
     <string name="btnSearch">Search a movie</string>
 
@@ -14,6 +14,12 @@
     <string name="tvTrending">Trending</string>
     <string name="tvTopRated">Top rated</string>
     <string name="tvUpcoming">Upcoming</string>
+
+    <!--activity_main_menu-->
+    <string name="actionMovies">Movies</string>
+    <string name="actionPeople">People</string>
+    <string name="actionTV">TV</string>
+    <string name="actionCompanies">Companies</string>
 
     <!--search activity-->
     <string name="placeholderSearch">Search a movie</string>

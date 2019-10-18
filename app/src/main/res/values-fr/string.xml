@@ -6,7 +6,7 @@
     <string name="titleWatchList">Watch List</string>
     <string name="titleSearch">Rechercher</string>
 
-    <!--menu-->
+    <!--activity_main_menu-->
     <string name="btnWatchList">Voir la watch list</string>
     <string name="btnSearch">Chercher un film</string>
 
@@ -14,6 +14,12 @@
     <string name="tvTrending">Tendance</string>
     <string name="tvTopRated">Les mieux notés</string>
     <string name="tvUpcoming">A l\'affiche</string>
+
+    <!--activity_main_menu-->
+    <string name="actionMovies">Films</string>
+    <string name="actionPeople">Personnalités</string>
+    <string name="actionTV">TV</string>
+    <string name="actionCompanies">Compagnies</string>
 
     <!--search activity-->
     <string name="placeholderSearch">Chercher un film</string>
@@ -24,7 +30,7 @@
     <string name="tvSynopsis">Synopsis</string>
     <string name="tvReleaseDate">Date de sortie</string>
     <string name="tvGenre">Genre</string>
-    <string name="tvProdCompanies">Companies de production</string>
+    <string name="tvProdCompanies">Compagnies de production</string>
     <string name="tvProdCountries">Payes de production</string>
     <string name="tvBudget">Budget</string>
     <string name="tvVoteAverage">Note moyenne</string>
