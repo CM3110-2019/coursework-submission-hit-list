@@ -15,11 +15,15 @@ import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    WatchlistDatabaseHelper userDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //creates the empty database when the MainActivity is created
+        userDB = new WatchlistDatabaseHelper(this);
     }
 
     @Override
