@@ -17,7 +17,7 @@ public class WatchlistDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
 
         //ignore this its just for testing it will create an empty database
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase() ;
     }
 
     @Override
