@@ -93,8 +93,7 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             //use the query to search your data somehow
             setTitle(getString(R.string.titleSearchQuery, query));
 
-            new FetchApi().Search(query,this,this,this);
-
+            FetchApi.Search(query, this, this, this);
         }
     }
 

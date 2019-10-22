@@ -14,7 +14,6 @@ import java.util.List;
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
-import rgu.com.hitlist.tmdbApi.FetchApi;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
