@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
+import rgu.com.hitlist.R;
 
 public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 

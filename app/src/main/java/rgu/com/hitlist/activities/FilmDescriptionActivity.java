@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+
+import rgu.com.hitlist.R;
 
 public class FilmDescriptionActivity extends AppCompatActivity {
 

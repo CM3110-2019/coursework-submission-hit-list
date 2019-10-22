@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
+
+import rgu.com.hitlist.R;
+import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

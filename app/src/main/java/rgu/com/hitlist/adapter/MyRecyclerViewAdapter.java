@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Movie;
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private List<Movie> mData;
@@ -17,7 +20,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Movie> data) {
+    public MyRecyclerViewAdapter(Context context, List<Movie> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,8 +36,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movie m = mData.get(position);
-        holder.tvTitle.setText(m.title);
-        holder.tvDescription.setText(m.description);
+        holder.tvTitle.setText(m.getTitle());
+        holder.tvDescription.setText(m.getDescription());
     }
 
     // total number of rows
@@ -68,7 +71,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

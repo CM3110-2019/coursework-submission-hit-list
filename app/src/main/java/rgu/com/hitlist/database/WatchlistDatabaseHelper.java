@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

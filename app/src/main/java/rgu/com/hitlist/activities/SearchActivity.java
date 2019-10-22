@@ -1,4 +1,4 @@
-package rgu.com.hitlist;
+package rgu.com.hitlist.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,17 +15,11 @@ import android.view.View;
 import android.widget.Toast;
 
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+
+import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
+import rgu.com.hitlist.R;
 
 public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
