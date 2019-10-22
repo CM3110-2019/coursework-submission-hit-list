@@ -37,7 +37,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movie m = mData.get(position);
         holder.tvTitle.setText(m.getTitle());
-        holder.tvDescription.setText(m.getDescription());
+        holder.tvOverview.setText(m.getOverview());
     }
 
     // total number of rows
@@ -50,12 +50,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle;
-        TextView tvDescription;
+        TextView tvOverview;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvOverview = itemView.findViewById(R.id.tvOverview);
             itemView.setOnClickListener(this);
         }
 

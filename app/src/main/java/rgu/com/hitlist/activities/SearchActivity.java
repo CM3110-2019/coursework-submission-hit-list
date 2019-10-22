@@ -17,13 +17,21 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.tmdbApi.FetchApi;
+
 
 public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, Response.Listener<String>, Response.ErrorListener {
 
@@ -35,21 +43,6 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
         setContentView(R.layout.activity_search);
         setTitle(R.string.titleSearch);
         handleIntent(getIntent());
-
-        // data to populate the RecyclerView with
-        ArrayList<Movie> data = new ArrayList<>();
-        data.add(new Movie("The Irishman", "World War II veteran and mob hitman Frank \"The Irishman\" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa."));
-        data.add(new Movie("title2", "description2"));
-        data.add(new Movie("title3", "description3"));
-        data.add(new Movie("title4", "description4"));
-
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvSearch);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, data);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -105,7 +98,21 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
 
     @Override
     public void onResponse(String response) {
-        Log.d("debug", response);
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            JSONArray results = jsonResponse.getJSONArray("results");
+            ArrayList<Movie> data = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+
+
+            RecyclerView recyclerView = findViewById(R.id.rvSearch);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new MyRecyclerViewAdapter(this, data);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
+
+        } catch (JSONException e) {
+            Log.d("debug", "JSONException: " + e);
+        }
     }
 
     @Override
