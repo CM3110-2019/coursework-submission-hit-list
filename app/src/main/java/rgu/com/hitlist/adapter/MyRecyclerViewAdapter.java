@@ -38,6 +38,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Movie m = mData.get(position);
         holder.tvTitle.setText(m.getTitle());
         holder.tvOverview.setText(m.getOverview());
+        holder.tvReleaseDate.setText(m.getRelease_date());
+        holder.tvVoteAverage.setText(String.valueOf( m.getVote_average()));
     }
 
     // total number of rows
@@ -51,11 +53,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle;
         TextView tvOverview;
+        TextView tvReleaseDate;
+        TextView tvVoteAverage;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
+            tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
+            tvVoteAverage = itemView.findViewById(R.id.tvVoteAverage);
             itemView.setOnClickListener(this);
         }
 
