@@ -11,16 +11,18 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    private static final String GET_IMAGE_URL = "https://image.tmdb.org/t/p/w200";
+    private static final String GET_IMAGE_URL = "https://image.tmdb.org/t/p/";
     ImageView imageView;
+    String size;
 
-    public DownloadImageTask(ImageView imageView) {
+    public DownloadImageTask(ImageView imageView, String size) {
         this.imageView = imageView;
+        this.size = size;
     }
 
     @Override
     public Bitmap doInBackground(String... strings) {
-        String urldisplay = GET_IMAGE_URL + strings[0];
+        String urldisplay = GET_IMAGE_URL + size + strings[0];
         Bitmap bitmap = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();

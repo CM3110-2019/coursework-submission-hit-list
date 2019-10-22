@@ -28,15 +28,11 @@
     <string name="titleSearchQuery">Results for \"%1$s\"</string>
 
     <!--filmDescription activity-->
-    <string name="tvOverview">Overview</string>
-    <string name="tvTagline">Tagline</string>
-    <string name="tvSynopsis">Synopsis</string>
-    <string name="tvReleaseDate">Release date</string>
-    <string name="tvGenre">Genre</string>
-    <string name="tvProdCompanies">Production companies</string>
-    <string name="tvProdCountries">Production countries</string>
-    <string name="tvBudget">Budget</string>
-    <string name="tvVoteAverage">Vote average</string>
-    <string name="tvVoteCount">Number of votes</string>
+    <string name="tvReleaseDate">Release date: %1$s</string>
+    <string name="tvVoteAverage">Vote average: %1$s</string>
+    <string name="tvVoteCount">Number of votes: %1$s</string>
+    <string name="tvBudget">Budget: %1$s</string>
+    <string name="tvGenre">Genre(s): %1$s</string>
+    <string name="tvProdCompanies">Production companies: %1$s</string>
 
 </resources>
