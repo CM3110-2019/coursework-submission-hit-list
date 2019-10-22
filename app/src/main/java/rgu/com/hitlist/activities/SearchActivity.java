@@ -8,20 +8,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, Response.Listener<String>, Response.ErrorListener {
 
     MyRecyclerViewAdapter adapter;
 
@@ -93,37 +97,19 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
             setTitle(getString(R.string.titleSearchQuery, query));
-            String apiKey = "beec08af73f4b8ae411ad8148d339a5a";
-            /*String url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&language=en&query=" + query;
-            String url = "https://api.themoviedb.org/3/search/movie?api_key=beec08af73f4b8ae411ad8148d339a5a&language=en&query=joker";
-            RequestQueue queue = Volley.newRequestQueue(this);
-            Log.d("debug", "handle intent");
-            StringRequest stringRequest = new StringRequest(
-                    Request.Method.GET,
-                    url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject res = new JSONObject(response);
-                                Log.d("debug", res.get("total_results").toString());
-                                Log.d("debug", res.keys().toString());
-                            } catch(JSONException e) {
-                                Log.d("debug", "JSONException: " + e);
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("debug", error.toString());
-                        }
-                    }
-            );
-            queue.add(stringRequest);*/
+
+            new FetchApi().Search(query,this,this,this);
 
         }
     }
 
+    @Override
+    public void onResponse(String response) {
+        Log.d("debug", response);
+    }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d("debug", error.toString());
+    }
 }
