@@ -2,8 +2,10 @@ package rgu.com.hitlist.model;
 
 import org.json.JSONArray;
 
+import java.io.Serializable;
 
-public class Movie {
+
+public class Movie implements Serializable {
     private boolean adult;
     private String backdrop_path;
     private JSONArray belongs_to_collection;

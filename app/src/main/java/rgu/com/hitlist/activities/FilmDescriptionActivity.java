@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Movie;
 
 public class FilmDescriptionActivity extends AppCompatActivity {
+
+    Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,10 @@ public class FilmDescriptionActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        /*Intent intent = getIntent();
+        movie = (Movie)intent.getSerializableExtra("movie");
+        Log.d("debug", movie.toString());*/
     }
 
     @Override

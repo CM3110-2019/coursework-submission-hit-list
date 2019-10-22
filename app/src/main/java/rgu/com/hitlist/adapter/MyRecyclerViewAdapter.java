@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,8 @@ import java.util.List;
 
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.tmdbApi.DownloadImageTask;
+import rgu.com.hitlist.tmdbApi.FetchApi;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
@@ -40,6 +43,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.tvOverview.setText(m.getOverview());
         holder.tvReleaseDate.setText(m.getRelease_date());
         holder.tvVoteAverage.setText(String.valueOf( m.getVote_average()));
+        new DownloadImageTask(holder.ivCover).execute(m.getPoster_path());
     }
 
     // total number of rows
@@ -55,6 +59,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView tvOverview;
         TextView tvReleaseDate;
         TextView tvVoteAverage;
+        ImageView ivCover;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +67,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             tvOverview = itemView.findViewById(R.id.tvOverview);
             tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
             tvVoteAverage = itemView.findViewById(R.id.tvVoteAverage);
+            ivCover = itemView.findViewById(R.id.ivCover);
             itemView.setOnClickListener(this);
         }
 

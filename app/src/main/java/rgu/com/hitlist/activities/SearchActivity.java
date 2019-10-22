@@ -36,6 +36,7 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, Response.Listener<String>, Response.ErrorListener {
 
     MyRecyclerViewAdapter adapter;
+    ArrayList<Movie> searchData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,9 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, FilmDescriptionActivity.class));
+        Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        intent.putExtra("movie", searchData.get(position));
+        startActivity(intent);
     }
 
     @Override
@@ -101,12 +103,11 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
         try {
             JSONObject jsonResponse = new JSONObject(response);
             JSONArray results = jsonResponse.getJSONArray("results");
-            ArrayList<Movie> data = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-
+            searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
 
             RecyclerView recyclerView = findViewById(R.id.rvSearch);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new MyRecyclerViewAdapter(this, data);
+            adapter = new MyRecyclerViewAdapter(this, searchData);
             adapter.setClickListener(this);
             recyclerView.setAdapter(adapter);
 
