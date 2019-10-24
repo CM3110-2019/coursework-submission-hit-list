@@ -30,7 +30,6 @@
             android:id="@+id/tvMovieTagline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textAlignment="center"/>
 
@@ -38,7 +37,8 @@
             android:id="@+id/tvMovieOverview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"/>
+            android:layout_margin="10sp"
+            android:justificationMode="inter_word"/>
 
         <TextView
             android:id="@+id/tvMovieReleaseDate"
