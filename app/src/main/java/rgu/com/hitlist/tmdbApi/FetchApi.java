@@ -8,10 +8,12 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Locale;
+
 
 public class FetchApi {
     private static final String API_KEY = "beec08af73f4b8ae411ad8148d339a5a";
-    private static final String LANGUAGE = "en";
+    private static final String LANGUAGE = Locale.getDefault().getLanguage();
     private static final String SEARCH_MOVIE_URL = "https://api.themoviedb.org/3/search/movie";
     private static final String GET_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     private static final String GET_TRENDING_MOVIE_URL = "https://api.themoviedb.org/3/trending/movie/";

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    JSONObject jsonResponse = new JSONObject(response);
 //                    JSONArray results = jsonResponse.getJSONArray("results");
 //                    trendingMovieData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-                    JSONParser(trendingPersonData, response);
+                    JSONParser(trendingMovieData, response);
                 }
                 catch (JSONException e){
                     Log.d("debug", "JSONException: " + e);
