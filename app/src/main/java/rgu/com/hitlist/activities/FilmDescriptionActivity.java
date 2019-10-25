@@ -39,7 +39,7 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 public class FilmDescriptionActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener, View.OnClickListener {
 
     Movie movie;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
