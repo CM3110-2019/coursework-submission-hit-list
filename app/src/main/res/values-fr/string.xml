@@ -18,8 +18,9 @@
     <!--activity_search_menu-->
     <string name="actionMovies">Films</string>
     <string name="actionPeople">Personnalités</string>
-    <string name="actionTV">TV</string>
+    <string name="actionTVShows">TV Shows</string>
     <string name="actionCompanies">Compagnies</string>
+    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Chercher un film</string>
 

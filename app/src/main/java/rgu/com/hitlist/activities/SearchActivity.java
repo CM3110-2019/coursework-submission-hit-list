@@ -69,11 +69,14 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             case R.id.actionPeople:
                 Toast.makeText(this, "People filter", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.actionTV:
-                Toast.makeText(this, "TV filter", Toast.LENGTH_SHORT).show();
+            case R.id.actionTVShows:
+                Toast.makeText(this, "TV Shows filter", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.actionCompanies:
                 Toast.makeText(this, "Companies filter", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.actionCollection:
+                Toast.makeText(this, "Collections filter", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

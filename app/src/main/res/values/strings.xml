@@ -18,8 +18,9 @@
     <!--activity_search_menu-->
     <string name="actionMovies">Movies</string>
     <string name="actionPeople">People</string>
-    <string name="actionTV">TV</string>
+    <string name="actionTVShows">TV Shows</string>
     <string name="actionCompanies">Companies</string>
+    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Search a movie</string>
 
