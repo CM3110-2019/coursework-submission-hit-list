@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -60,6 +61,8 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
 
         Button btnAddToWatchList = findViewById(R.id.btnAddToWatchList);
         btnAddToWatchList.setOnClickListener(this);
+        Button btnOpenHomepage = findViewById(R.id.btnOpenHomepage);
+        btnOpenHomepage.setOnClickListener(this);
 
     }
 
@@ -80,6 +83,9 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
         switch (v.getId()) {
             case R.id.btnAddToWatchList:
                 Log.d("debug", "added to the wath list");
+                break;
+            case R.id.btnOpenHomepage:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getHomepage())));
                 break;
         }
     }
