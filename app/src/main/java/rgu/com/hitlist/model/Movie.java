@@ -3,14 +3,16 @@ package rgu.com.hitlist.model;
 import org.json.JSONArray;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 
 public class Movie implements Serializable {
     private boolean adult;
     private String backdrop_path;
-    private JSONArray belongs_to_collection;
+    private Map<String, String> belongs_to_collection;
     private long budget;
-    private JSONArray genres;
+    private List<Map<String, String>> genres;
     private String homepage;
     private long id;
     private String imdb_id;
@@ -19,12 +21,12 @@ public class Movie implements Serializable {
     private String overview;
     private float popularity;
     private String poster_path;
-    private JSONArray production_companies;
-    private JSONArray production_countries;
+    private List<Map<String, String>> production_companies;
+    private List<Map<String, String>> production_countries;
     private String release_date;
     private long revenue;
     private int runtime;
-    private JSONArray spoken_languages;
+    private List<Map<String, String>> spoken_languages;
     private String status;
     private String tagline;
     private String title;
@@ -60,11 +62,11 @@ public class Movie implements Serializable {
         this.backdrop_path = backdrop_path;
     }
 
-    public JSONArray getBelongs_to_collection() {
+    public Map<String, String> getBelongs_to_collection() {
         return belongs_to_collection;
     }
 
-    public void setBelongs_to_collection(JSONArray belongs_to_collection) {
+    public void setBelongs_to_collection(Map<String, String> belongs_to_collection) {
         this.belongs_to_collection = belongs_to_collection;
     }
 
@@ -76,11 +78,11 @@ public class Movie implements Serializable {
         this.budget = budget;
     }
 
-    public JSONArray getGenres() {
+    public List<Map<String, String>> getGenres() {
         return genres;
     }
 
-    public void setGenres(JSONArray genres) {
+    public void setGenres(List<Map<String, String>> genres) {
         this.genres = genres;
     }
 
@@ -148,19 +150,19 @@ public class Movie implements Serializable {
         this.poster_path = poster_path;
     }
 
-    public JSONArray getProduction_companies() {
+    public List<Map<String, String>> getProduction_companies() {
         return production_companies;
     }
 
-    public void setProduction_companies(JSONArray production_companies) {
+    public void setProduction_companies(List<Map<String, String>> production_companies) {
         this.production_companies = production_companies;
     }
 
-    public JSONArray getProduction_countries() {
+    public List<Map<String, String>> getProduction_countries() {
         return production_countries;
     }
 
-    public void setProduction_countries(JSONArray production_countries) {
+    public void setProduction_countries(List<Map<String, String>> production_countries) {
         this.production_countries = production_countries;
     }
 
@@ -188,11 +190,11 @@ public class Movie implements Serializable {
         this.runtime = runtime;
     }
 
-    public JSONArray getSpoken_languages() {
+    public List<Map<String, String>> getSpoken_languages() {
         return spoken_languages;
     }
 
-    public void setSpoken_languages(JSONArray spoken_languages) {
+    public void setSpoken_languages(List<Map<String, String>> spoken_languages) {
         this.spoken_languages = spoken_languages;
     }
 

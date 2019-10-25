@@ -18,14 +18,17 @@
     <!--activity_search_menu-->
     <string name="actionMovies">Films</string>
     <string name="actionPeople">Personnalités</string>
-    <string name="actionTV">TV</string>
+    <string name="actionTVShows">TV Shows</string>
     <string name="actionCompanies">Compagnies</string>
+    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Chercher un film</string>
 
     <!--search activity-->
     <string name="placeholderSearch">Chercher un film</string>
     <string name="titleSearchQuery">Résultats pour \"%1$s\"</string>
+    <string name="toastNoResult">Aucun résultat</string>
+    <string name="toastResult">%1$s resultats</string>
 
     <!--filmDescription activity-->
     <string name="tvReleaseDate">Date de sortie: %1$s</string>
@@ -34,5 +37,7 @@
     <string name="tvBudget">Budget: %1$s</string>
     <string name="tvGenre">Genre(s): %1$s</string>
     <string name="tvProdCompanies">Compagnie(s) de production: %1$s</string>
+    <string name="btnOpenHomepage">Ouvrir la page d\'accueil</string>
+    <string name="btnAddToWatchList">Ajouter à la watch list</string>
     
 </resources>

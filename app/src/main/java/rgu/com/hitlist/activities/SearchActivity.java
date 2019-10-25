@@ -69,11 +69,14 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             case R.id.actionPeople:
                 Toast.makeText(this, "People filter", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.actionTV:
-                Toast.makeText(this, "TV filter", Toast.LENGTH_SHORT).show();
+            case R.id.actionTVShows:
+                Toast.makeText(this, "TV Shows filter", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.actionCompanies:
                 Toast.makeText(this, "Companies filter", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.actionCollection:
+                Toast.makeText(this, "Collections filter", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -103,6 +106,12 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             JSONObject jsonResponse = new JSONObject(response);
             JSONArray results = jsonResponse.getJSONArray("results");
             searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+
+            if(searchData.size() == 0) {
+                Toast.makeText(this, getString(R.string.toastNoResult), Toast.LENGTH_LONG).show();
+            } /*else {
+                Toast.makeText(this, getString(R.string.toastResult, String.valueOf(searchData.size())), Toast.LENGTH_LONG).show();
+            }*/ // the api always returns 20 results
 
             RecyclerView recyclerView = findViewById(R.id.rvSearch);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
