@@ -26,6 +26,8 @@
     <!--search activity-->
     <string name="placeholderSearch">Chercher un film</string>
     <string name="titleSearchQuery">Résultats pour \"%1$s\"</string>
+    <string name="toastNoResult">Aucun résultat</string>
+    <string name="toastResult">%1$s resultats</string>
 
     <!--filmDescription activity-->
     <string name="tvReleaseDate">Date de sortie: %1$s</string>

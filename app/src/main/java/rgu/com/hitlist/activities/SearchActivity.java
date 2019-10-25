@@ -104,6 +104,12 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             JSONArray results = jsonResponse.getJSONArray("results");
             searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
 
+            if(searchData.size() == 0) {
+                Toast.makeText(this, getString(R.string.toastNoResult), Toast.LENGTH_LONG).show();
+            } /*else {
+                Toast.makeText(this, getString(R.string.toastResult, String.valueOf(searchData.size())), Toast.LENGTH_LONG).show();
+            }*/ // the api always returns 20 results
+
             RecyclerView recyclerView = findViewById(R.id.rvSearch);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             adapter = new MyRecyclerViewAdapter(this, searchData);
