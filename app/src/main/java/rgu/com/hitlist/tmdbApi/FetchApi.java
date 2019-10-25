@@ -40,7 +40,7 @@ public class FetchApi {
 
     public static void TrendingMoviesDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_MOVIE_URL +"/day?api_key=" + API_KEY + "&language=" + LANGUAGE;
+        String url = GET_TRENDING_MOVIE_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 
@@ -49,7 +49,7 @@ public class FetchApi {
 
     public static void TrendingTVDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_TV_URL +"/day?api_key=" + API_KEY + "&language=" + LANGUAGE;
+        String url = GET_TRENDING_TV_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 
@@ -58,7 +58,7 @@ public class FetchApi {
 
     public static void TrendingPersonDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_PERSON_URL +"/day?api_key=" + API_KEY + "&language=" + LANGUAGE;
+        String url = GET_TRENDING_PERSON_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 

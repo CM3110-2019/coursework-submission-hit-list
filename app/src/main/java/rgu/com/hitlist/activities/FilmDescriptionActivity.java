@@ -19,7 +19,7 @@ import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 public class FilmDescriptionActivity extends AppCompatActivity {
 
     Movie movie;
-
+    Movie tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,6 @@ public class FilmDescriptionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         movie = (Movie)intent.getSerializableExtra("movie");
         Log.d("debug", movie.toString());
-
 
         ImageView ivCover = findViewById(R.id.ivCover);
         TextView tvMovieTitle = findViewById(R.id.tvMovieTitle);

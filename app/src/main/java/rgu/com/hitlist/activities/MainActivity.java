@@ -30,19 +30,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
+import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
 import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener{
+public class MainActivity extends AppCompatActivity implements TrendingRecyclerViewAdapter.ItemClickListener, View.OnClickListener, Response.ErrorListener{
 
     WatchlistDatabaseHelper userDB;
-    MyRecyclerViewAdapter adapter;
+    TrendingRecyclerViewAdapter adapter; //Need different adapter
 
     ArrayList<Movie> trendingMovieData;
     ArrayList<Movie> trendingTVData;
     ArrayList<Movie> trendingPersonData;
 
+    int which;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +55,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(String response) {
                 try{
-//                    JSONObject jsonResponse = new JSONObject(response);
-//                    JSONArray results = jsonResponse.getJSONArray("results");
-//                    trendingMovieData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-                    JSONParser(trendingMovieData, response);
+                    JSONParserMovie(response);
+
                 }
                 catch (JSONException e){
                     Log.d("debug", "JSONException: " + e);
                 }
             }
+
         }, this);
 
         FetchApi.TrendingTVDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
-                    JSONParser(trendingTVData, response);
+                    JSONParserTV(response);
+
                 }
                 catch (JSONException e){
                     Log.d("debug", "JSONException: " + e);
@@ -76,17 +78,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }, this);
 
-        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try{
-                    JSONParser(trendingPersonData, response);
-                }
-                catch (JSONException e){
-                    Log.d("debug", "JSONException: " + e);
-                }
-            }
-        }, this);
+//        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+////                try{
+////                  //  JSONParserPerson(response);
+////                }
+////                catch (JSONException e){
+////                    Log.d("debug", "JSONException: " + e);
+////                }
+//            }
+//        }, this);
 
         //creates the empty database when the MainActivity is created
         userDB = new WatchlistDatabaseHelper(this);
@@ -126,22 +128,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        Log.d("debug", error.toString());
     }
 
-    public void JSONParser(ArrayList<Movie> dataT, String response) throws JSONException {
+
+//    @Override
+//    public void onResponse(String response) {
+//        try{
+//
+////            JSONObject jsonResponse = new JSONObject(response);
+////            JSONArray results = jsonResponse.getJSONArray("results");
+////            trendingMovieData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+////
+////            RecyclerView recyclerView = findViewById(R.id.rvTrending);
+////            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+////            adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData); //maybe make 3 adapter declerations
+////            adapter.setClickListener(this);
+////            recyclerView.setAdapter(adapter);
+//            JSONParserMovie(response);
+//        }
+//        catch (JSONException e){
+//            Log.d("debug", "JSONException: " + e);
+//        }
+//    }
+
+    public void JSONParserMovie(String response) throws JSONException {
 
         JSONObject jsonResponse = new JSONObject(response);
         JSONArray results = jsonResponse.getJSONArray("results");
-        dataT = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+        trendingMovieData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+
+        RecyclerView recyclerView = findViewById(R.id.rvTrending);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData); //maybe make 3 adapter declerations
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+        which = 1;
+
+    }
+    public void JSONParserTV(String response) throws JSONException {
+
+        JSONObject jsonResponse = new JSONObject(response);
+        JSONArray results = jsonResponse.getJSONArray("results");
+        trendingTVData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingTVData); //maybe make 3 adapter declerations
+
+        RecyclerView recyclerView = findViewById(R.id.rvTV);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+        which = 2;
+
+    }
+    public void JSONParserPerson(String response) throws JSONException {
+
+        JSONObject jsonResponse = new JSONObject(response);
+        JSONArray results = jsonResponse.getJSONArray("results");
+        trendingPersonData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData); //maybe make 3 adapter declerations
 
         RecyclerView recyclerView = findViewById(R.id.rvTrending);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, dataT);
-        adapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) this);
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+        which = 3;
 
     }
 
 
+    @Override
+    public void onItemClick(View view, int position) {
+        Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        intent.putExtra("movie",  trendingMovieData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+        startActivity(intent);
+    }
 }
