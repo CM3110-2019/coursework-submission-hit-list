@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +35,7 @@ import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class FilmDescriptionActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener {
+public class FilmDescriptionActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener, View.OnClickListener {
 
     Movie movie;
 
@@ -56,6 +58,9 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
             FetchApi.GetMovie(String.valueOf(movie.getId()), this, this, this);
         }
 
+        Button btnAddToWatchList = findViewById(R.id.btnAddToWatchList);
+        btnAddToWatchList.setOnClickListener(this);
+
     }
 
     @Override
@@ -67,6 +72,15 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnAddToWatchList:
+                Log.d("debug", "added to the wath list");
+                break;
         }
     }
 

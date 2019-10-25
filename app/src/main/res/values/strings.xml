@@ -34,5 +34,6 @@
     <string name="tvBudget">Budget: %1$s</string>
     <string name="tvGenre">Genre(s): %1$s</string>
     <string name="tvProdCompanies">Production companies: %1$s</string>
+    <string name="btnAddToWatchList">Add to the watch list</string>
 
 </resources>

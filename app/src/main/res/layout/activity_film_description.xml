@@ -88,5 +88,11 @@
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
+        <Button
+            android:id="@+id/btnAddToWatchList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnAddToWatchList"/>
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
