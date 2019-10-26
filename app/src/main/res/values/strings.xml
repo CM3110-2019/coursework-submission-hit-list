@@ -12,8 +12,9 @@
 
     <!--main activity-->
     <string name="tvTrending">Trending</string>
-    <string name="tvTopRated">Top rated</string>
-    <string name="tvUpcoming">Upcoming</string>
+    <string name="tvTV">TV</string>
+    <string name="tvMovies">Movies</string>
+    <string name="tvPeople">People</string>
 
     <!--activity_search_menu-->
     <string name="actionMovies">Movies</string>

@@ -12,8 +12,9 @@
 
     <!--main activity-->
     <string name="tvTrending">Tendance</string>
-    <string name="tvTopRated">Les mieux notés</string>
-    <string name="tvUpcoming">A l\'affiche</string>
+    <string name="tvTV">TV</string>
+    <string name="tvMovies">Films</string>
+    <string name="tvPeople">Personnalités</string>
 
     <!--activity_search_menu-->
     <string name="actionMovies">Films</string>

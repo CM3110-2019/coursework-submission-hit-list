@@ -35,7 +35,7 @@ import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class MainActivity extends AppCompatActivity implements TrendingRecyclerViewAdapter.ItemClickListener, View.OnClickListener, Response.ErrorListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener{
 
     WatchlistDatabaseHelper userDB;
     TrendingRecyclerViewAdapter adapter; //Need different adapter
@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
     ArrayList<Movie> trendingMovieData;
     ArrayList<Movie> trendingTVData;
     ArrayList<Movie> trendingPersonData;
-
-    int which;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +76,17 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
             }
         }, this);
 
-//        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-////                try{
-////                  //  JSONParserPerson(response);
-////                }
-////                catch (JSONException e){
-////                    Log.d("debug", "JSONException: " + e);
-////                }
-//            }
-//        }, this);
+        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                   JSONParserPerson(response);
+                }
+                catch (JSONException e){
+                    Log.d("debug", "JSONException: " + e);
+                }
+            }
+        }, this);
 
         //creates the empty database when the MainActivity is created
         userDB = new WatchlistDatabaseHelper(this);
@@ -131,27 +129,6 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
         Log.d("debug", error.toString());
     }
 
-
-//    @Override
-//    public void onResponse(String response) {
-//        try{
-//
-////            JSONObject jsonResponse = new JSONObject(response);
-////            JSONArray results = jsonResponse.getJSONArray("results");
-////            trendingMovieData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-////
-////            RecyclerView recyclerView = findViewById(R.id.rvTrending);
-////            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-////            adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData); //maybe make 3 adapter declerations
-////            adapter.setClickListener(this);
-////            recyclerView.setAdapter(adapter);
-//            JSONParserMovie(response);
-//        }
-//        catch (JSONException e){
-//            Log.d("debug", "JSONException: " + e);
-//        }
-//    }
-
     public void JSONParserMovie(String response) throws JSONException {
 
         JSONObject jsonResponse = new JSONObject(response);
@@ -161,9 +138,15 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
         RecyclerView recyclerView = findViewById(R.id.rvTrending);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData); //maybe make 3 adapter declerations
-        adapter.setClickListener(this);
+        final Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                intent.putExtra("movie",  trendingMovieData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
-        which = 1;
 
     }
     public void JSONParserTV(String response) throws JSONException {
@@ -175,11 +158,20 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
 
         RecyclerView recyclerView = findViewById(R.id.rvTV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapter.setClickListener(this);
+        //adapter.setClickListener(this);
+        final Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                intent.putExtra("movie",  trendingTVData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
-        which = 2;
+
 
     }
+
     public void JSONParserPerson(String response) throws JSONException {
 
         JSONObject jsonResponse = new JSONObject(response);
@@ -187,19 +179,17 @@ public class MainActivity extends AppCompatActivity implements TrendingRecyclerV
         trendingPersonData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
         adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData); //maybe make 3 adapter declerations
 
-        RecyclerView recyclerView = findViewById(R.id.rvTrending);
+        RecyclerView recyclerView = findViewById(R.id.rvPeople);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-        which = 3;
+        final Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                intent.putExtra("movie",  trendingPersonData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+                startActivity(intent);
+            }
+        });        recyclerView.setAdapter(adapter);
 
     }
 
-
-    @Override
-    public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, FilmDescriptionActivity.class);
-        intent.putExtra("movie",  trendingMovieData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
-        startActivity(intent);
-    }
 }
