@@ -33,7 +33,7 @@
                 android:id="@+id/tvUpcoming"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tvUpcoming"
+                android:text="@string/tvMovies"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -51,7 +51,7 @@
                 android:id="@+id/tvTopRated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tvTopRated"
+                android:text="@string/tvTV"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -64,6 +64,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvPeople"
+                android:textSize="30sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPeople"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
