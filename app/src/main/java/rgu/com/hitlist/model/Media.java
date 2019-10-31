@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Media implements Serializable {
+public abstract class Media implements Serializable {
     private String backdrop_path;
     private List<Map<String, String>> genres;
     private String homepage;
