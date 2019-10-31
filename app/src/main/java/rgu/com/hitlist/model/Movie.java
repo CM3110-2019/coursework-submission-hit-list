@@ -7,36 +7,35 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Movie implements Serializable {
+public class Movie extends Media implements Serializable {
     private boolean adult;
-    private String backdrop_path;
+    //private String backdrop_path;
     private Map<String, String> belongs_to_collection;
     private long budget;
-    private List<Map<String, String>> genres;
-    private String homepage;
-    private long id;
+    //private List<Map<String, String>> genres;
+    //private String homepage;
+    //private long id;
     private String imdb_id;
-    private String original_language;
+    //private String original_language;
     private String original_title;
-    private String overview;
-    private float popularity;
-    private String poster_path;
-    private List<Map<String, String>> production_companies;
+    //private String overview;
+    //private float popularity;
+    //private String poster_path;
+    //private List<Map<String, String>> production_companies;
     private List<Map<String, String>> production_countries;
     private String release_date;
     private long revenue;
     private int runtime;
     private List<Map<String, String>> spoken_languages;
-    private String status;
+    //private String status;
     private String tagline;
     private String title;
     private boolean video;
-    private float vote_average;
-    private int vote_count;
+    //private float vote_average;
+    //private int vote_count;
 
-    public Movie(String title, String overview) {
+    public Movie(String title) {
         this.title = title;
-        this.overview = overview;
     }
 
     @Override
@@ -54,13 +53,13 @@ public class Movie implements Serializable {
         this.adult = adult;
     }
 
-    public String getBackdrop_path() {
+    /*public String getBackdrop_path() {
         return backdrop_path;
     }
 
     public void setBackdrop_path(String backdrop_path) {
         this.backdrop_path = backdrop_path;
-    }
+    }*/
 
     public Map<String, String> getBelongs_to_collection() {
         return belongs_to_collection;
@@ -78,7 +77,7 @@ public class Movie implements Serializable {
         this.budget = budget;
     }
 
-    public List<Map<String, String>> getGenres() {
+    /*public List<Map<String, String>> getGenres() {
         return genres;
     }
 
@@ -86,7 +85,7 @@ public class Movie implements Serializable {
         this.genres = genres;
     }
 
-    public String getHomepage() {
+    /*public String getHomepage() {
         return homepage;
     }
 
@@ -100,7 +99,7 @@ public class Movie implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
+    }*/
 
     public String getImdb_id() {
         return imdb_id;
@@ -110,13 +109,13 @@ public class Movie implements Serializable {
         this.imdb_id = imdb_id;
     }
 
-    public String getOriginal_language() {
+    /*public String getOriginal_language() {
         return original_language;
     }
 
     public void setOriginal_language(String original_language) {
         this.original_language = original_language;
-    }
+    }*/
 
     public String getOriginal_title() {
         return original_title;
@@ -126,7 +125,7 @@ public class Movie implements Serializable {
         this.original_title = original_title;
     }
 
-    public String getOverview() {
+    /*public String getOverview() {
         return overview;
     }
 
@@ -156,7 +155,7 @@ public class Movie implements Serializable {
 
     public void setProduction_companies(List<Map<String, String>> production_companies) {
         this.production_companies = production_companies;
-    }
+    }*/
 
     public List<Map<String, String>> getProduction_countries() {
         return production_countries;
@@ -198,13 +197,13 @@ public class Movie implements Serializable {
         this.spoken_languages = spoken_languages;
     }
 
-    public String getStatus() {
+    /*public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
+    }*/
 
     public String getTagline() {
         return tagline;
@@ -230,7 +229,7 @@ public class Movie implements Serializable {
         this.video = video;
     }
 
-    public float getVote_average() {
+    /*public float getVote_average() {
         return vote_average;
     }
 
@@ -244,5 +243,5 @@ public class Movie implements Serializable {
 
     public void setVote_count(int vote_count) {
         this.vote_count = vote_count;
-    }
+    }*/
 }

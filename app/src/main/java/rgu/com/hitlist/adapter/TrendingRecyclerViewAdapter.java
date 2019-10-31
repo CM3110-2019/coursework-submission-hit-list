@@ -12,17 +12,18 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 
 public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRecyclerViewAdapter.ViewHolder>{
 
-    private List<Movie> mData;
+    private List<Media> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public TrendingRecyclerViewAdapter(Context context, List<Movie> data) {
+    public TrendingRecyclerViewAdapter(Context context, List<Media> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -39,7 +40,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Movie m = mData.get(position);
+        Media m = mData.get(position);
         new DownloadImageTask(holder.trPoster, "w200").execute(m.getPoster_path());
     }
 
@@ -69,7 +70,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     }
 
     // convenience method for getting data at click position
-    Movie getItem(int id) {
+    Media getItem(int id) {
         return mData.get(id);
     }
 

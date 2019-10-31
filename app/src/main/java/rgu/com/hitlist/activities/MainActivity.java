@@ -32,7 +32,9 @@ import rgu.com.hitlist.R;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
 import rgu.com.hitlist.database.WatchlistDatabaseHelper;
+import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener{
@@ -40,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     WatchlistDatabaseHelper userDB;
     TrendingRecyclerViewAdapter adapter; //Need different adapter
 
-    ArrayList<Movie> trendingMovieData;
-    ArrayList<Movie> trendingTVData;
-    ArrayList<Movie> trendingPersonData;
+    List<Media> trendingMovieData;
+    List<Media> trendingTVData;
+    List<Media> trendingPersonData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
