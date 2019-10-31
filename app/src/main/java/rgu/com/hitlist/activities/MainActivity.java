@@ -155,13 +155,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         JSONObject jsonResponse = new JSONObject(response);
         JSONArray results = jsonResponse.getJSONArray("results");
-        trendingTVData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingTVData); //maybe make 3 adapter declerations
+        trendingTVData = new Gson().fromJson(results.toString(), new TypeToken<List<Tv>>(){}.getType());
 
         RecyclerView recyclerView = findViewById(R.id.rvTV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        //adapter.setClickListener(this);
-        final Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingTVData); //maybe make 3 adapter declerations
+        final Intent intent = new Intent(this, TVDescriptionActivity.class);
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
