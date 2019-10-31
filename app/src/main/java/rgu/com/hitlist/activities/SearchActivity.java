@@ -27,16 +27,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
 
 public class SearchActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, Response.Listener<String>, Response.ErrorListener {
 
     MyRecyclerViewAdapter adapter;
-    ArrayList<Movie> searchData;
+    List<Media> searchData;
+    String query;
+    String dataType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +69,16 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
         switch (item.getItemId()) {
             case R.id.actionMovies:
                 Toast.makeText(this, "Movies filter", Toast.LENGTH_SHORT).show();
+                this.dataType = "movie";
+                search();
                 return true;
             case R.id.actionPeople:
                 Toast.makeText(this, "People filter", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.actionTVShows:
                 Toast.makeText(this, "TV Shows filter", Toast.LENGTH_SHORT).show();
+                this.dataType = "tv";
+                search();
                 return true;
             case R.id.actionCompanies:
                 Toast.makeText(this, "Companies filter", Toast.LENGTH_SHORT).show();
@@ -96,8 +104,14 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
             //use the query to search your data somehow
             setTitle(getString(R.string.titleSearchQuery, query));
 
-            FetchApi.Search(query, this, this, this);
+            this.query = query;
+            this.dataType = "movie";
+            search();
         }
+    }
+
+    private void search() {
+        FetchApi.Search(this.query, this, this.dataType, this, this);
     }
 
     @Override
@@ -105,7 +119,16 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
         try {
             JSONObject jsonResponse = new JSONObject(response);
             JSONArray results = jsonResponse.getJSONArray("results");
-            searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+
+            switch(this.dataType) {
+                case "movie":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+                    break;
+                case "tv":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Tv>>(){}.getType());
+                    break;
+            }
+
 
             if(searchData.size() == 0) {
                 Toast.makeText(this, getString(R.string.toastNoResult), Toast.LENGTH_LONG).show();
