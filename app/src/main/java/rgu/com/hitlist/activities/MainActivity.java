@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                intent.putExtra("movie",  trendingTVData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+                intent.putExtra("movie",  trendingTVData.get(position));
                 startActivity(intent);
             }
         });
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         JSONObject jsonResponse = new JSONObject(response);
         JSONArray results = jsonResponse.getJSONArray("results");
         trendingPersonData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData); //maybe make 3 adapter declerations
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData);
 
         RecyclerView recyclerView = findViewById(R.id.rvPeople);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -185,10 +185,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                intent.putExtra("movie",  trendingPersonData.get(position)); //add input extra for tv and change film description so that it recognises the difference betweeen the data
+                intent.putExtra("movie",  trendingPersonData.get(position));
                 startActivity(intent);
             }
-        });        recyclerView.setAdapter(adapter);
+        });
+        recyclerView.setAdapter(adapter);
 
     }
 
