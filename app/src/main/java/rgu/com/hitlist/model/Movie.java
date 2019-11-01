@@ -9,30 +9,30 @@ import java.util.Map;
 
 public class Movie extends Media implements Serializable {
     private boolean adult;
-    //private String backdrop_path;
+    private String backdrop_path;
     private Map<String, String> belongs_to_collection;
     private long budget;
-    //private List<Map<String, String>> genres;
+    private List<Map<String, String>> genres;
     //private String homepage;
     //private long id;
     private String imdb_id;
     //private String original_language;
     private String original_title;
-    //private String overview;
+    private String overview;
     //private float popularity;
     //private String poster_path;
-    //private List<Map<String, String>> production_companies;
+    private List<Map<String, String>> production_companies;
     private List<Map<String, String>> production_countries;
     private String release_date;
     private long revenue;
     private int runtime;
     private List<Map<String, String>> spoken_languages;
-    //private String status;
+    private String status;
     private String tagline;
     private String title;
     private boolean video;
-    //private float vote_average;
-    //private int vote_count;
+    private float vote_average;
+    private int vote_count;
 
     public Movie(String title) {
         this.title = title;
