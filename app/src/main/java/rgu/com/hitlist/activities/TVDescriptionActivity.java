@@ -35,7 +35,6 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvdescription);
 
-        //display the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -43,17 +42,16 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
 
         Intent intent = getIntent();
 
-        if(intent.getSerializableExtra("movie") != null) {
-            tv = (Tv)intent.getSerializableExtra("movie");
+        if(intent.getSerializableExtra("tv") != null) {
+            tv = (Tv)intent.getSerializableExtra("tv");
             Log.d("debug", tv.toString());
-            FetchApi.GetMovie(String.valueOf(tv.getId()), this, this, this);
+            FetchApi.GetMedia(String.valueOf(tv.getId()), this, "tv", this, this);
         }
 
-        Button btnAddToWatchList = findViewById(R.id.btnAddToWatchList);
+        Button btnAddToWatchList = findViewById(R.id.btnAddTvToWatchList);
         btnAddToWatchList.setOnClickListener(this);
-        Button btnOpenHomepage = findViewById(R.id.btnOpenHomepage);
+        Button btnOpenHomepage = findViewById(R.id.btnOpenTvHomepage);
         btnOpenHomepage.setOnClickListener(this);
-
     }
 
     @Override
@@ -71,10 +69,10 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnAddToWatchList:
+            case R.id.btnAddTvToWatchList:
                 Log.d("debug", "added to the wath list");
                 break;
-            case R.id.btnOpenHomepage:
+            case R.id.btnOpenTvHomepage:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tv.getHomepage())));
                 break;
         }
@@ -82,24 +80,23 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
 
     @Override
     public void onResponse(String response) {
-
         tv = new Gson().fromJson(response, Tv.class);
 
-        ImageView ivCover = findViewById(R.id.ivCover);
-        TextView tvMovieTitle = findViewById(R.id.tvMovieTitle);
-        TextView tvMovieOverview = findViewById(R.id.tvMovieOverview);
-        TextView tvMovieReleaseDate = findViewById(R.id.tvMovieReleaseDate);
-        TextView tvMovieVoteAverage = findViewById(R.id.tvMovieVoteAverage);
-        TextView tvMovieVoteCount = findViewById(R.id.tvMovieVoteCount);
-        TextView tvMovieBudget = findViewById(R.id.tvMovieBudget);
-        TextView tvMovieGenre = findViewById(R.id.tvMovieGenre);
-        TextView tvMovieProdCompanies = findViewById(R.id.tvMovieProdCompanies);
+        ImageView ivTvCover = findViewById(R.id.ivTvCover);
+        TextView tvTvName = findViewById(R.id.tvTvName);
+        TextView tvTvOverview = findViewById(R.id.tvTvOverview);
+        TextView tvTvFirstAirDate = findViewById(R.id.tvTvFirstAirDate);
+        TextView tvTvVoteAverage = findViewById(R.id.tvTvVoteAverage);
+        TextView tvTvVoteCount = findViewById(R.id.tvTvVoteCount);
+        TextView tvTvGenre = findViewById(R.id.tvTvGenre);
+        TextView tvTvProdCompanies = findViewById(R.id.tvTvProdCompanies);
 
-        new DownloadImageTask(ivCover, "w500").execute(tv.getBackdrop_path());
-        tvMovieTitle.setText(tv.getName());
-        tvMovieOverview.setText(tv.getOverview());
-        tvMovieVoteAverage.setText(getString(R.string.tvVoteAverage, String.valueOf(tv.getVote_average())));
-        tvMovieVoteCount.setText(getString(R.string.tvVoteCount, String.valueOf(tv.getVote_count())));
+        new DownloadImageTask(ivTvCover, "w500").execute(tv.getBackdrop_path());
+        tvTvName.setText(tv.getName());
+        tvTvOverview.setText(tv.getOverview());
+        tvTvFirstAirDate.setText(getString(R.string.tvReleaseDate, tv.getFirst_air_date()));
+        tvTvVoteAverage.setText(getString(R.string.tvVoteAverage, String.valueOf(tv.getVote_average())));
+        tvTvVoteCount.setText(getString(R.string.tvVoteCount, String.valueOf(tv.getVote_count())));
 
         String genres = "";
         Iterator<Map<String, String>> genreIt = tv.getGenres().iterator();
@@ -107,7 +104,7 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
             genres += genreIt.next().get("name");
             if(genreIt.hasNext()) genres += ", ";
         }
-        tvMovieGenre.setText(getString(R.string.tvGenre, genres));
+        tvTvGenre.setText(getString(R.string.tvGenre, genres));
 
         String prodComp = "";
         Iterator<Map<String, String>> prodCompIt = tv.getProduction_companies().iterator();
@@ -115,7 +112,8 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
             prodComp += prodCompIt.next().get("name");
             if(prodCompIt.hasNext()) prodComp +=", ";
         }
-        tvMovieProdCompanies.setText(getString(R.string.tvProdCompanies, prodComp));
+        tvTvProdCompanies.setText(getString(R.string.tvProdCompanies, prodComp));
+
     }
 
     @Override
@@ -123,3 +121,4 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
 
     }
 }
+

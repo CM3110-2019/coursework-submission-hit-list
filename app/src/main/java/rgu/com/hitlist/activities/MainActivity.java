@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                intent.putExtra("movie",  trendingTVData.get(position));
+                intent.putExtra("tv",  trendingTVData.get(position));
                 startActivity(intent);
             }
         });

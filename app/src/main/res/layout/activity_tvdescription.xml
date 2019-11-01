@@ -13,13 +13,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivCover"
+            android:id="@+id/ivTvCover"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/tvMovieTitle"
+            android:id="@+id/tvTvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -27,21 +27,14 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/tvMovieTagline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/tvMovieOverview"
+            android:id="@+id/tvTvOverview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:justificationMode="inter_word"/>
 
         <TextView
-            android:id="@+id/tvMovieReleaseDate"
+            android:id="@+id/tvTvFirstAirDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -49,7 +42,7 @@
             android:layout_marginLeft="10sp"/>
 
         <TextView
-            android:id="@+id/tvMovieVoteAverage"
+            android:id="@+id/tvTvVoteAverage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -57,7 +50,7 @@
             android:layout_marginLeft="10sp"/>
 
         <TextView
-            android:id="@+id/tvMovieVoteCount"
+            android:id="@+id/tvTvVoteCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -65,7 +58,7 @@
             android:layout_marginLeft="10sp"/>
 
         <TextView
-            android:id="@+id/tvMovieBudget"
+            android:id="@+id/tvTvGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -73,15 +66,7 @@
             android:layout_marginLeft="10sp"/>
 
         <TextView
-            android:id="@+id/tvMovieGenre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:layout_marginLeft="10sp"/>
-
-        <TextView
-            android:id="@+id/tvMovieProdCompanies"
+            android:id="@+id/tvTvProdCompanies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
@@ -89,13 +74,13 @@
             android:layout_marginLeft="10sp"/>
 
         <Button
-            android:id="@+id/btnOpenHomepage"
+            android:id="@+id/btnOpenTvHomepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnOpenHomepage" />
 
         <Button
-            android:id="@+id/btnAddToWatchList"
+            android:id="@+id/btnAddTvToWatchList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnAddToWatchList"/>
