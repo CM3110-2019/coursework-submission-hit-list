@@ -28,6 +28,7 @@ public class FetchApi {
         queue.add(stringRequest);
     }
 
+    //add type like above
     public static void GetMovie(String id, Context context, Response.Listener<String> res, Response.ErrorListener err) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = GET_MOVIE_URL + id +"?api_key=" + API_KEY + "&language=" + LANGUAGE;

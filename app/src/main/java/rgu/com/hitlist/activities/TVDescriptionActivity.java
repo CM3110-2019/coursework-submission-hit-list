@@ -46,7 +46,7 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
         if(intent.getSerializableExtra("movie") != null) {
             tv = (Tv)intent.getSerializableExtra("movie");
             Log.d("debug", tv.toString());
-            FetchApi.GetMovie(String.valueOf(tv.getId()), this, this, this);
+            FetchApi.GetMovie(String.valueOf(tv.getId()), this, this, this); //change the parameters
         }
 
         Button btnAddToWatchList = findViewById(R.id.btnAddToWatchList);
