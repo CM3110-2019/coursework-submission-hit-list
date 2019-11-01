@@ -46,6 +46,7 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
             tv = (Tv)intent.getSerializableExtra("tv");
             Log.d("debug", tv.toString());
             FetchApi.GetMedia(String.valueOf(tv.getId()), this, "tv", this, this);
+
         }
 
         Button btnAddToWatchList = findViewById(R.id.btnAddTvToWatchList);

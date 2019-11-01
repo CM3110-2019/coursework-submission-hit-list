@@ -21,6 +21,21 @@ public class Tv extends Media implements Serializable {
     private String original_name;
     private List<Map<String, Object>> seasons;
     private String type;
+    private String status;
+    private float vote_average;
+    private int vote_count;
+    private String backdrop_path;
+    private List<Map<String, String>> genres;
+    private String original_language;
+    private String overview;
+    private List<Map<String, String>> production_companies;
+
+    @Override
+    public String toString() {
+        return "Tv{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 
     public List<Map<String, Object>> getCreated_by() {
         return created_by;
@@ -148,5 +163,69 @@ public class Tv extends Media implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public float getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(float vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
+    public List<Map<String, String>> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Map<String, String>> genres) {
+        this.genres = genres;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public List<Map<String, String>> getProduction_companies() {
+        return production_companies;
+    }
+
+    public void setProduction_companies(List<Map<String, String>> production_companies) {
+        this.production_companies = production_companies;
     }
 }
