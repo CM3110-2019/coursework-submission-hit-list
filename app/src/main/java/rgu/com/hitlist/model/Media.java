@@ -9,6 +9,7 @@ public abstract class Media implements Serializable {
     private long id;
     private float popularity;
     private String poster_path;
+    private String profile_path;
 
     @Override
     public String toString() {
@@ -23,6 +24,14 @@ public abstract class Media implements Serializable {
 
     public void setHomepage(String homepage) {
         this.homepage = homepage;
+    }
+
+    public String getProfile_path() {
+        return profile_path;
+    }
+
+    public void setProfile_path(String profile_path) {
+        this.profile_path = profile_path;
     }
 
     public long getId() {

@@ -44,13 +44,15 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         if(intent.getSerializableExtra("people") != null) {
             person = (People)intent.getSerializableExtra("people");
             Log.d("debug", person.toString());
-            FetchApi.GetMedia(String.valueOf(person.getId()), this, "people", this, this);
+            FetchApi.GetMedia(String.valueOf(person.getId()), this, "person", this, this); //need to code getPerson in fetch API
+            Log.d("debug", person.toString());
+
 
         }
 
-        Button btnAddToWatchList = findViewById(R.id.btnAddTvToWatchList);
+        Button btnAddToWatchList = findViewById(R.id.btnAddPeToWatchList);
         btnAddToWatchList.setOnClickListener(this);
-        Button btnOpenHomepage = findViewById(R.id.btnOpenTvHomepage);
+        Button btnOpenHomepage = findViewById(R.id.btnOpenPeHomepage);
         btnOpenHomepage.setOnClickListener(this);
     }
     @Override
@@ -68,10 +70,10 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnAddTvToWatchList:
-                Log.d("debug", "added to the wath list");
+            case R.id.btnAddPeToWatchList:
+                Log.d("debug", "added to the watch list");
                 break;
-            case R.id.btnOpenTvHomepage:
+            case R.id.btnOpenPeHomepage:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(person.getHomepage())));
                 break;
         }
@@ -90,12 +92,12 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         tvPeName.setText(person.getName());
         tvPeBiography.setText(person.getBiography());
         tvBirthday.setText(person.getBirthday());
-        if(person.getDeathday().equals(null)){
-            tvDeathday.setText("alive");
-        }else{
-            tvDeathday.setText(person.getDeathday());
-        }
-        
+//        if(person.getDeathday().isEmpty()){
+//            tvDeathday.setText("alive");
+//        }else{
+//            tvDeathday.setText(person.getDeathday());
+//        }
+        tvDeathday.setText(person.getDeathday());
 
 
     }

@@ -21,11 +21,13 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     private List<Media> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private String type;
 
     // data is passed into the constructor
-    public TrendingRecyclerViewAdapter(Context context, List<Media> data) {
+    public TrendingRecyclerViewAdapter(Context context, List<Media> data, String type) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.type = type;
     }
 
     // inflates the row layout from xml when needed
@@ -41,7 +43,12 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Media m = mData.get(position);
-        new DownloadImageTask(holder.trPoster, "w200").execute(m.getPoster_path());
+        if(type.equals("people")){
+            new DownloadImageTask(holder.trPoster, "w200").execute(m.getProfile_path());
+        }
+        else {
+            new DownloadImageTask(holder.trPoster, "w200").execute(m.getPoster_path());
+        }
     }
 
     // total number of rows

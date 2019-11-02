@@ -34,6 +34,7 @@ import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
 import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.People;
 import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         RecyclerView recyclerView = findViewById(R.id.rvTrending);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData); //maybe make 3 adapter declerations
+        adapter = new TrendingRecyclerViewAdapter(this, trendingMovieData, "movie"); //maybe make 3 adapter declerations
         final Intent intent = new Intent(this, FilmDescriptionActivity.class);
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         RecyclerView recyclerView = findViewById(R.id.rvTV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingTVData); //maybe make 3 adapter declerations
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingTVData, "tv"); //maybe make 3 adapter declerations
         final Intent intent = new Intent(this, TVDescriptionActivity.class);
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
@@ -177,12 +178,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         JSONObject jsonResponse = new JSONObject(response);
         JSONArray results = jsonResponse.getJSONArray("results");
-        trendingPersonData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData);
+        trendingPersonData = new Gson().fromJson(results.toString(), new TypeToken<List<People>>(){}.getType());
+        adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData, "people");
 
         RecyclerView recyclerView = findViewById(R.id.rvPeople);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final Intent intent = new Intent(this, FilmDescriptionActivity.class);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        final Intent intent = new Intent(this, PeopleDescriptionActvity.class);
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
