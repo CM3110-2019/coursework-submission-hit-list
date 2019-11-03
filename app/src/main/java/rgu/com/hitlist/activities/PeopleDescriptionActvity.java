@@ -87,17 +87,15 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         TextView tvPeBiography = findViewById(R.id.tvPeBiography);
         TextView tvBirthday = findViewById(R.id.tvBirthday);
         TextView tvDeathday = findViewById(R.id.tvDeathday);
+        ImageView ivPeProfile = findViewById(R.id.ivPeProfile);
 
 
+        new DownloadImageTask(ivPeProfile, "w500").execute(person.getProfile_path());
         tvPeName.setText(person.getName());
         tvPeBiography.setText(person.getBiography());
         tvBirthday.setText(person.getBirthday());
-//        if(person.getDeathday().isEmpty()){
-//            tvDeathday.setText("alive");
-//        }else{
-//            tvDeathday.setText(person.getDeathday());
-//        }
         tvDeathday.setText(person.getDeathday());
+
 
 
     }
