@@ -38,21 +38,18 @@
             android:layout_margin="10sp"
             android:justificationMode="inter_word"/>
 
-        <TextView
-            android:id="@+id/tvBirthday"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:layout_marginLeft="10sp"/>
-
-        <TextView
-            android:id="@+id/tvDeathday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:layout_marginLeft="10sp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:layout_marginLeft="10sp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvKnownforDepartment"
@@ -62,17 +59,15 @@
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
-        <Button
-            android:id="@+id/btnOpenPeHomepage"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvPeAKA"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnOpenHomepage" />
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:layout_marginLeft="10sp"/>
 
-        <Button
-            android:id="@+id/btnAddPeToWatchList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnAddToWatchList"/>
+
 
     </LinearLayout>
 

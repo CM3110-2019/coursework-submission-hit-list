@@ -50,10 +50,6 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
 
         }
 
-        Button btnAddToWatchList = findViewById(R.id.btnAddPeToWatchList);
-        btnAddToWatchList.setOnClickListener(this);
-        Button btnOpenHomepage = findViewById(R.id.btnOpenPeHomepage);
-        btnOpenHomepage.setOnClickListener(this);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -69,14 +65,7 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnAddPeToWatchList:
-                Log.d("debug", "added to the watch list");
-                break;
-            case R.id.btnOpenPeHomepage:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(person.getHomepage())));
-                break;
-        }
+
     }
 
     @Override
@@ -86,16 +75,21 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         TextView tvPeName = findViewById(R.id.tvPeName);
         TextView tvPeBiography = findViewById(R.id.tvPeBiography);
         TextView tvBirthday = findViewById(R.id.tvBirthday);
-        TextView tvDeathday = findViewById(R.id.tvDeathday);
+        TextView tvKnownForDepartment = findViewById(R.id.tvKnownforDepartment);
+        TextView tvAKA = findViewById(R.id.tvPeAKA);
         ImageView ivPeProfile = findViewById(R.id.ivPeProfile);
 
 
         new DownloadImageTask(ivPeProfile, "w500").execute(person.getProfile_path());
         tvPeName.setText(person.getName());
         tvPeBiography.setText(person.getBiography());
-        tvBirthday.setText(person.getBirthday());
-        tvDeathday.setText(person.getDeathday());
-
+        tvBirthday.setText(getString(R.string.tvDateofBirth) + " " + person.getBirthday());
+        tvKnownForDepartment.setText(person.getKnown_for_department());
+        String list = new String();
+        for(String s : person.getAlso_known_as()){
+            list += s + "\n";
+        }
+        tvAKA.setText(list);
 
 
     }
