@@ -14,6 +14,7 @@ import java.util.List;
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.People;
 import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 
@@ -54,6 +55,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             holder.tvReleaseDate.setText(tv.getFirst_air_date());
             holder.tvVoteAverage.setText(String.valueOf(tv.getVote_average()));
             new DownloadImageTask(holder.ivPoster, "w200").execute(tv.getPoster_path());
+        } else if(m instanceof People) {
+            People p = (People) m;
+            holder.tvTitle.setText(p.getName());
+            new DownloadImageTask(holder.ivPoster, "w200").execute(p.getProfile_path());
         }
 
     }

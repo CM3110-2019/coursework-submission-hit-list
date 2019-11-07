@@ -31,6 +31,7 @@ import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.People;
 import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
@@ -52,9 +53,25 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, FilmDescriptionActivity.class);
-        intent.putExtra("movie", searchData.get(position));
-        startActivity(intent);
+        switch(this.dataType) {
+            case "movie":
+                Intent movieIntent = new Intent(this, FilmDescriptionActivity.class);
+                movieIntent.putExtra("movie", searchData.get(position));
+                startActivity(movieIntent);
+                break;
+            case "tv":
+                Intent TvIntent = new Intent(this, TVDescriptionActivity.class);
+                TvIntent.putExtra("tv", searchData.get(position));
+                startActivity(TvIntent);
+                break;
+            case "person":
+                Intent personIntent = new Intent(this, PeopleDescriptionActvity.class);
+                personIntent.putExtra("people", searchData.get(position));
+                startActivity(personIntent);
+                break;
+        }
+
+
     }
 
     @Override
@@ -74,6 +91,8 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
                 return true;
             case R.id.actionPeople:
                 Toast.makeText(this, "People filter", Toast.LENGTH_SHORT).show();
+                this.dataType = "person";
+                search();
                 return true;
             case R.id.actionTVShows:
                 Toast.makeText(this, "TV Shows filter", Toast.LENGTH_SHORT).show();
@@ -126,6 +145,9 @@ public class SearchActivity extends AppCompatActivity implements MyRecyclerViewA
                     break;
                 case "tv":
                     searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Tv>>(){}.getType());
+                    break;
+                case "person":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<People>>(){}.getType());
                     break;
             }
 
