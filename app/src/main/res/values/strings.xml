@@ -40,5 +40,10 @@
     <string name="tvProdCompanies">Production companies: %1$s</string>
     <string name="btnOpenHomepage">Open the homepage</string>
     <string name="btnAddToWatchList">Add to the watch list</string>
+    
+    <!-- peopleDescription activity-->
+    <string name="tvDateofBirth"> Date of Birth :</string>
+    <string name="tvDeathday">Died on : </string>
+
 
 </resources>
