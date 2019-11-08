@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getTrendings() {
-        FetchApi.TrendingMoviesDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -120,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-        }, this);
+        }, this, "movie");
 
-        FetchApi.TrendingTVDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -133,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("debug", "JSONException: " + e);
                 }
             }
-        }, this);
+        }, this, "tv");
 
-        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("debug", "JSONException: " + e);
                 }
             }
-        }, this);
+        }, this, "person");
     }
 
     public void JSONParserMovie(String response) throws JSONException {

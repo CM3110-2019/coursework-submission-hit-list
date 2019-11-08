@@ -19,10 +19,11 @@ public class FetchApi {
     private static final String GET_TRENDING_MOVIE_URL = "https://api.themoviedb.org/3/trending/movie/";
     private static final String GET_TRENDING_TV_URL = "https://api.themoviedb.org/3/trending/tv/";
     private static final String GET_TRENDING_PERSON_URL = "https://api.themoviedb.org/3/trending/person/";
+    private static final String GET_TRENDING_URL = "https://api.themoviedb.org/3/trending/";
 
     public static void Search(String query, Context context, String type, Response.Listener<String> res, Response.ErrorListener err) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = SEARCH_URL + type +"?api_key=" + API_KEY + "&language=" + LANGUAGE + "&query=" + query;
+        String url = SEARCH_URL + type + "?api_key=" + API_KEY + "&language=" + LANGUAGE + "&query=" + query;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 
         queue.add(stringRequest);
@@ -30,38 +31,21 @@ public class FetchApi {
 
     public static void GetMedia(String id, Context context, String type, Response.Listener<String> res, Response.ErrorListener err) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_URL + type + "/" + id +"?api_key=" + API_KEY + "&language=" + LANGUAGE;
+        String url = GET_URL + type + "/" + id + "?api_key=" + API_KEY + "&language=" + LANGUAGE;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 
         queue.add(stringRequest);
     }
 
-    public static void TrendingMoviesDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
+    public static void TrendingDay(Context context, Response.Listener<String> res, Response.ErrorListener err, String type) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_MOVIE_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
+        String url = GET_TRENDING_URL + type + "/day?api_key=" + API_KEY + "&language=" + LANGUAGE;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
 
         queue.add(stringRequest);
     }
 
-    public static void TrendingTVDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_TV_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
-
-        queue.add(stringRequest);
-    }
-
-    public static void TrendingPersonDay(Context context, Response.Listener<String> res, Response.ErrorListener err){
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = GET_TRENDING_PERSON_URL +"day?api_key=" + API_KEY + "&language=" + LANGUAGE;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, res, err);
-
-        queue.add(stringRequest);
-    }
 }
 
