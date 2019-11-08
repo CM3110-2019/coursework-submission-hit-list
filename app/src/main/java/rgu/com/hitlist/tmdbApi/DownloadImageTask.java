@@ -4,16 +4,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 
+import rgu.com.hitlist.R;
+
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     private static final String GET_IMAGE_URL = "https://image.tmdb.org/t/p/";
     ImageView imageView;
     String size;
+    ProgressBar progressBar;
 
     public DownloadImageTask(ImageView imageView, String size) {
         this.imageView = imageView;
