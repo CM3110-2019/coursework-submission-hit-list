@@ -44,6 +44,8 @@
     <!-- peopleDescription activity-->
     <string name="tvDateofBirth"> Date de naissance : </string>
     <string name="tvDeathday">Mort le : </string>
+    <string name="tvAKA">Autres Noms : </string>
+    <string name="tvKnownFor">Connu pour : </string>
 
 
 </resources>
