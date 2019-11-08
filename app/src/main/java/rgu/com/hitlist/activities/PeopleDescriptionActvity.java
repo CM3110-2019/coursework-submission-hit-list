@@ -84,8 +84,9 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         tvPeName.setText(person.getName());
         tvPeBiography.setText(person.getBiography());
         tvBirthday.setText(getString(R.string.tvDateofBirth) + " " + person.getBirthday());
-        tvKnownForDepartment.setText(person.getKnown_for_department());
+        tvKnownForDepartment.setText(getString(R.string.tvKnownFor) + " " + person.getKnown_for_department());
         String list = new String();
+        list = getString(R.string.tvAKA) + "\n " ;
         for(String s : person.getAlso_known_as()){
             list += s + "\n";
         }
