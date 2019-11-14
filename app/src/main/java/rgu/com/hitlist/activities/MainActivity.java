@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.android.volley.Response;
@@ -24,7 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,9 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import rgu.com.hitlist.R;
-import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
-import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.model.People;
@@ -43,7 +39,6 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener{
 
-    WatchlistDatabaseHelper userDB;
     TrendingRecyclerViewAdapter adapter; //Need different adapter
 
     List<Media> trendingMovieData;
@@ -66,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         getTrendings();
-        //creates the empty database when the MainActivity is created
-        userDB = new WatchlistDatabaseHelper(this);
+
     }
 
     @Override
