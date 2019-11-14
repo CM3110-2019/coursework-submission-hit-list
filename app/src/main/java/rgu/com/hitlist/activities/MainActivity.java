@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.android.volley.Response;
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         getTrendings();
-
         //creates the empty database when the MainActivity is created
         userDB = new WatchlistDatabaseHelper(this);
     }
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getTrendings() {
-        FetchApi.TrendingMoviesDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -120,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-        }, this);
+        }, this, "movie");
 
-        FetchApi.TrendingTVDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -133,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("debug", "JSONException: " + e);
                 }
             }
-        }, this);
+        }, this, "tv");
 
-        FetchApi.TrendingPersonDay(this, new Response.Listener<String>() {
+        FetchApi.TrendingDay(this, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -145,7 +145,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("debug", "JSONException: " + e);
                 }
             }
-        }, this);
+        }, this, "person");
+
     }
 
     public void JSONParserMovie(String response) throws JSONException {
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         recyclerView.setAdapter(adapter);
+
     }
 
     public void JSONParserPerson(String response) throws JSONException {
@@ -195,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter = new TrendingRecyclerViewAdapter(getApplicationContext(), trendingPersonData, "people");
 
         RecyclerView recyclerView = findViewById(R.id.rvPeople);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         final Intent intent = new Intent(this, PeopleDescriptionActvity.class);
         adapter.setClickListener(new TrendingRecyclerViewAdapter.ItemClickListener() {
@@ -205,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         recyclerView.setAdapter(adapter);
+
 
     }
 
