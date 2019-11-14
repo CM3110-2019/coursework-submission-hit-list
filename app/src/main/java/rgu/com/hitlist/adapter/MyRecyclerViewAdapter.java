@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.People;
+import rgu.com.hitlist.model.Tv;
+import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<Movie> mData;
+    private List<Media> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<Movie> data) {
+    public MyRecyclerViewAdapter(Context context, List<Media> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -35,11 +41,27 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Movie m = mData.get(position);
-        holder.tvTitle.setText(m.getTitle());
-        holder.tvOverview.setText(m.getOverview());
-        holder.tvReleaseDate.setText(m.getRelease_date());
-        holder.tvVoteAverage.setText(String.valueOf( m.getVote_average()));
+        Media m = mData.get(position);
+        if(m instanceof Movie) {
+            Movie movie = (Movie)m;
+            holder.tvTitle.setText(movie.getTitle());
+            holder.tvOverview.setText(movie.getOverview());
+            holder.tvReleaseDate.setText(movie.getRelease_date());
+            holder.tvVoteAverage.setText(String.valueOf(movie.getVote_average()));
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(movie.getPoster_path());
+        } else if(m instanceof Tv) {
+            Tv tv = (Tv)m;
+            holder.tvTitle.setText(tv.getName());
+            holder.tvOverview.setText(tv.getOverview());
+            holder.tvReleaseDate.setText(tv.getFirst_air_date());
+            holder.tvVoteAverage.setText(String.valueOf(tv.getVote_average()));
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(tv.getPoster_path());
+        } else if(m instanceof People) {
+            People p = (People) m;
+            holder.tvTitle.setText(p.getName());
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(p.getProfile_path());
+        }
+
     }
 
     // total number of rows
@@ -55,6 +77,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView tvOverview;
         TextView tvReleaseDate;
         TextView tvVoteAverage;
+        ImageView ivPoster;
+        ProgressBar indeterminateBarSearch;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,7 +86,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             tvOverview = itemView.findViewById(R.id.tvOverview);
             tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
             tvVoteAverage = itemView.findViewById(R.id.tvVoteAverage);
+            ivPoster = itemView.findViewById(R.id.ivPoster);
             itemView.setOnClickListener(this);
+            indeterminateBarSearch = itemView.findViewById(R.id.indeterminateBarSearch);
         }
 
         @Override
@@ -72,7 +98,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // convenience method for getting data at click position
-    Movie getItem(int id) {
+    Media getItem(int id) {
         return mData.get(id);
     }
 

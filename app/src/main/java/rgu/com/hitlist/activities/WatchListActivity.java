@@ -25,19 +25,19 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         setTitle(R.string.titleWatchList);
 
         // data to populate the RecyclerView with
-        ArrayList<Movie> data = new ArrayList<>();
-        data.add(new Movie("The Irishman", "World War II veteran and mob hitman Frank \"The Irishman\" Sheeran recalls his possible involvement with the slaying of union leader Jimmy Hoffa."));
-        data.add(new Movie("title2", "description2"));
-        data.add(new Movie("title3", "description3"));
-        data.add(new Movie("title4", "description4"));
+        /*List<Movie> data = new ArrayList<>();
+        data.add(new Movie("The Irishman"));
+        data.add(new Movie("title2"));
+        data.add(new Movie("title3"));
+        data.add(new Movie("title4"));*/
 
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+        /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerViewAdapter(this, data);
         adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
     }
 
     @Override

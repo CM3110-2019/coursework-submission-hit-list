@@ -9,34 +9,47 @@
     <!--activity_main_menu-->
     <string name="btnWatchList">Go to the watch list</string>
     <string name="btnSearch">Search a movie</string>
+    <string name="language">Language</string>
+    <string name="en">English</string>
+    <string name="fr">Français</string>
+    <string name="sp">Español</string>
 
     <!--main activity-->
     <string name="tvTrending">Trending</string>
-    <string name="tvTopRated">Top rated</string>
-    <string name="tvUpcoming">Upcoming</string>
+    <string name="tvTV">TV</string>
+    <string name="tvMovies">Movies</string>
+    <string name="tvPeople">People</string>
 
     <!--activity_search_menu-->
     <string name="actionMovies">Movies</string>
     <string name="actionPeople">People</string>
-    <string name="actionTV">TV</string>
+    <string name="actionTVShows">TV Shows</string>
     <string name="actionCompanies">Companies</string>
+    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Search a movie</string>
 
     <!--search activity-->
     <string name="placeholderSearch">Search a movie</string>
     <string name="titleSearchQuery">Results for \"%1$s\"</string>
+    <string name="toastNoResult">No result</string>
+    <string name="toastResult">%1$s results</string>
 
     <!--filmDescription activity-->
-    <string name="tvOverview">Overview</string>
-    <string name="tvTagline">Tagline</string>
-    <string name="tvSynopsis">Synopsis</string>
-    <string name="tvReleaseDate">Release date</string>
-    <string name="tvGenre">Genre</string>
-    <string name="tvProdCompanies">Production companies</string>
-    <string name="tvProdCountries">Production countries</string>
-    <string name="tvBudget">Budget</string>
-    <string name="tvVoteAverage">Vote average</string>
-    <string name="tvVoteCount">Number of votes</string>
+    <string name="tvReleaseDate">Release date: %1$s</string>
+    <string name="tvVoteAverage">Vote average: %1$s</string>
+    <string name="tvVoteCount">Number of votes: %1$s</string>
+    <string name="tvBudget">Budget: %1$s</string>
+    <string name="tvGenre">Genre(s): %1$s</string>
+    <string name="tvProdCompanies">Production companies: %1$s</string>
+    <string name="btnOpenHomepage">Open the homepage</string>
+    <string name="btnAddToWatchList">Add to the watch list</string>
+    
+    <!-- peopleDescription activity-->
+    <string name="tvDateofBirth"> Date of Birth :</string>
+    <string name="tvDeathday">Died on : </string>
+    <string name="tvAKA">Also known as : </string>
+    <string name="tvKnownFor">Known for : </string>
+
 
 </resources>

@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/actionSearch"
         android:icon="@drawable/search_white"
         android:title="@string/titleSearch"
         app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.widget.SearchView"/>
+        app:actionViewClass="android.widget.SearchView" />
 
     <item
         android:id="@+id/actionWatchList"
         android:icon="@drawable/eye_white"
         android:title="@string/btnWatchList"
         app:showAsAction="ifRoom" />
+
+
+    <item
+        android:title="@string/language"
+        android:icon="@drawable/language_white"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/en"
+                android:title="@string/en"/>
+            <item
+                android:id="@+id/fr"
+                android:title="@string/fr"/>
+            <item
+                android:id="@+id/sp"
+                android:title="@string/sp"/>
+        </menu>
+    </item>
 </menu>
