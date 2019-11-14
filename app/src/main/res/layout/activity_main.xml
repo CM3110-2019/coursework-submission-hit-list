@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stars"
+    android:background="@drawable/background"
     tools:context=".activities.MainActivity"
     android:id="@+id/refreshLayout">
     <ScrollView
@@ -30,15 +30,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#99FFFFFF">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvUpcoming"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tvMovies"
-                    android:textSize="30sp" />
+                    android:textColor="#01d277"
+                    android:textSize="32sp"
+                    android:gravity="center"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTrending"
@@ -50,7 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tvTV"
-                    android:textSize="30sp" />
+                    android:textColor="#01d277"
+                    android:textSize="30sp"
+                    android:gravity="center"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTV"
@@ -62,7 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tvPeople"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:textColor="#01d277"
+                    android:gravity="center"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPeople"
