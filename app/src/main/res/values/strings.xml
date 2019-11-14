@@ -9,6 +9,10 @@
     <!--activity_main_menu-->
     <string name="btnWatchList">Go to the watch list</string>
     <string name="btnSearch">Search a movie</string>
+    <string name="language">Language</string>
+    <string name="en">English</string>
+    <string name="fr">Français</string>
+    <string name="sp">Español</string>
 
     <!--main activity-->
     <string name="tvTrending">Trending</string>

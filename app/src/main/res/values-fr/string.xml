@@ -5,6 +5,10 @@
     <!--titles-->
     <string name="titleWatchList">Watch List</string>
     <string name="titleSearch">Rechercher</string>
+    <string name="language">Language</string>
+    <string name="en">English</string>
+    <string name="fr">Français</string>
+    <string name="sp">Español</string>
 
     <!--activity_main_menu-->
     <string name="btnWatchList">Voir la watch list</string>
