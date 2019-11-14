@@ -41,6 +41,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         });
 
 
+
         setTitle(R.string.titleWatchList);
 
 
