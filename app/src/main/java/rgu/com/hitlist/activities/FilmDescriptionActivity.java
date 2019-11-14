@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -85,6 +86,7 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
     public void onResponse(String response) {
 
         movie = new Gson().fromJson(response, Movie.class);
+        ProgressBar pbDescription = findViewById(R.id.pbDescription);
 
         ImageView ivCover = findViewById(R.id.ivCover);
         TextView tvMovieTitle = findViewById(R.id.tvMovieTitle);
@@ -97,7 +99,7 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
         TextView tvMovieGenre = findViewById(R.id.tvMovieGenre);
         TextView tvMovieProdCompanies = findViewById(R.id.tvMovieProdCompanies);
 
-        new DownloadImageTask(ivCover, "w500").execute(movie.getBackdrop_path());
+        new DownloadImageTask(ivCover, "w500", pbDescription).execute(movie.getBackdrop_path());
         tvMovieTitle.setText(movie.getTitle());
         tvMovieTagline.setText(movie.getTagline());
         tvMovieOverview.setText(movie.getOverview());

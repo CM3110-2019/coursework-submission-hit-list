@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -71,6 +72,7 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
     @Override
     public void onResponse(String response) {
         person = new Gson().fromJson(response, People.class);
+        ProgressBar pbPeople = findViewById(R.id.pbPeople);
 
         TextView tvPeName = findViewById(R.id.tvPeName);
         TextView tvPeBiography = findViewById(R.id.tvPeBiography);
@@ -80,7 +82,7 @@ public class PeopleDescriptionActvity extends AppCompatActivity implements Respo
         ImageView ivPeProfile = findViewById(R.id.ivPeProfile);
 
 
-        new DownloadImageTask(ivPeProfile, "w500").execute(person.getProfile_path());
+        new DownloadImageTask(ivPeProfile, "w500", pbPeople).execute(person.getProfile_path());
         tvPeName.setText(person.getName());
         tvPeBiography.setText(person.getBiography());
         tvBirthday.setText(getString(R.string.tvDateofBirth) + " " + person.getBirthday());

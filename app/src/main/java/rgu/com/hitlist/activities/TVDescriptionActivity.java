@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -82,6 +83,7 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
     @Override
     public void onResponse(String response) {
         tv = new Gson().fromJson(response, Tv.class);
+        ProgressBar pbTv = findViewById(R.id.pbTv);
 
         ImageView ivTvCover = findViewById(R.id.ivTvCover);
         TextView tvTvName = findViewById(R.id.tvTvName);
@@ -92,7 +94,7 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
         TextView tvTvGenre = findViewById(R.id.tvTvGenre);
         TextView tvTvProdCompanies = findViewById(R.id.tvTvProdCompanies);
 
-        new DownloadImageTask(ivTvCover, "w500").execute(tv.getBackdrop_path());
+        new DownloadImageTask(ivTvCover, "w500", pbTv).execute(tv.getBackdrop_path());
         tvTvName.setText(tv.getName());
         tvTvOverview.setText(tv.getOverview());
         tvTvFirstAirDate.setText(getString(R.string.tvReleaseDate, tv.getFirst_air_date()));

@@ -46,10 +46,10 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Media m = mData.get(position);
         if(type.equals("people")){
-            new DownloadImageTask(holder.trPoster, "w200").execute(m.getProfile_path());
+            new DownloadImageTask(holder.trPoster, "w200", holder.indeterminateBar).execute(m.getProfile_path());
         }
         else {
-            new DownloadImageTask(holder.trPoster, "w200").execute(m.getPoster_path());
+            new DownloadImageTask(holder.trPoster, "w200", holder.indeterminateBar).execute(m.getPoster_path());
         }
     }
 
@@ -64,10 +64,12 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<TrendingRe
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView trPoster;
+        ProgressBar indeterminateBar;
 
         ViewHolder(View itemView) {
             super(itemView);
             trPoster = itemView.findViewById(R.id.trPoster);
+            indeterminateBar = itemView.findViewById(R.id.indeterminateBar);
             itemView.setOnClickListener(this);
         }
 

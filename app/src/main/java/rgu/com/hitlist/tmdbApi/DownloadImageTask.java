@@ -20,9 +20,10 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     String size;
     ProgressBar progressBar;
 
-    public DownloadImageTask(ImageView imageView, String size) {
+    public DownloadImageTask(ImageView imageView, String size, ProgressBar indeterminateBar) {
         this.imageView = imageView;
         this.size = size;
+        this.progressBar = indeterminateBar;
     }
 
     @Override
@@ -42,5 +43,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     public void onPostExecute(Bitmap result) {
         imageView.setImageBitmap(result);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

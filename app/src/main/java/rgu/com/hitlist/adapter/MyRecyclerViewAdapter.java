@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,18 +48,18 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             holder.tvOverview.setText(movie.getOverview());
             holder.tvReleaseDate.setText(movie.getRelease_date());
             holder.tvVoteAverage.setText(String.valueOf(movie.getVote_average()));
-            new DownloadImageTask(holder.ivPoster, "w200").execute(movie.getPoster_path());
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(movie.getPoster_path());
         } else if(m instanceof Tv) {
             Tv tv = (Tv)m;
             holder.tvTitle.setText(tv.getName());
             holder.tvOverview.setText(tv.getOverview());
             holder.tvReleaseDate.setText(tv.getFirst_air_date());
             holder.tvVoteAverage.setText(String.valueOf(tv.getVote_average()));
-            new DownloadImageTask(holder.ivPoster, "w200").execute(tv.getPoster_path());
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(tv.getPoster_path());
         } else if(m instanceof People) {
             People p = (People) m;
             holder.tvTitle.setText(p.getName());
-            new DownloadImageTask(holder.ivPoster, "w200").execute(p.getProfile_path());
+            new DownloadImageTask(holder.ivPoster, "w200", holder.indeterminateBarSearch).execute(p.getProfile_path());
         }
 
     }
@@ -77,6 +78,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView tvReleaseDate;
         TextView tvVoteAverage;
         ImageView ivPoster;
+        ProgressBar indeterminateBarSearch;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -86,6 +88,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             tvVoteAverage = itemView.findViewById(R.id.tvVoteAverage);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             itemView.setOnClickListener(this);
+            indeterminateBarSearch = itemView.findViewById(R.id.indeterminateBarSearch);
         }
 
         @Override
