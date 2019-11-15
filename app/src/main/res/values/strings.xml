@@ -12,7 +12,6 @@
     <string name="language">Language</string>
     <string name="en">English</string>
     <string name="fr">Français</string>
-    <string name="sp">Español</string>
 
     <!--main activity-->
     <string name="tvTrending">Trending</string>
@@ -24,8 +23,6 @@
     <string name="actionMovies">Movies</string>
     <string name="actionPeople">People</string>
     <string name="actionTVShows">TV Shows</string>
-    <string name="actionCompanies">Companies</string>
-    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Search a movie</string>
 

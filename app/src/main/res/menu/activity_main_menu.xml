@@ -27,9 +27,6 @@
             <item
                 android:id="@+id/fr"
                 android:title="@string/fr"/>
-            <item
-                android:id="@+id/sp"
-                android:title="@string/sp"/>
         </menu>
     </item>
 </menu>

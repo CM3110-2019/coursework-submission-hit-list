@@ -10,10 +10,4 @@
     <item
         android:title="@string/actionTVShows"
         android:id="@+id/actionTVShows"/>
-    <item
-        android:title="@string/actionCompanies"
-        android:id="@+id/actionCompanies"/>
-    <item
-        android:title="@string/actionCollection"
-        android:id="@+id/actionCollection"/>
 </menu>

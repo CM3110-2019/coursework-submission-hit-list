@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     SwipeRefreshLayout refreshLayout;
 
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getTrendings();
         //creates the empty database when the MainActivity is created
         userDB = new WatchlistDatabaseHelper(this);
+
+        Log.d("debug", Locale.getDefault().getLanguage());
+        prefs = getSharedPreferences("LANGUAGE", MODE_PRIVATE);
+        if(prefs.getString("language", "").equals("")) {
+            editor = getSharedPreferences("LANGUAGE", MODE_PRIVATE).edit();
+            editor.putString("language", Locale.getDefault().getLanguage());
+            editor.apply();
+        }
     }
 
     @Override
@@ -96,6 +109,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.actionWatchList:
                 startActivity(new Intent(this, WatchListActivity.class));
+                return true;
+            case R.id.en:
+                editor = getSharedPreferences("LANGUAGE", MODE_PRIVATE).edit();
+                editor.putString("language", "en");
+                editor.apply();
+                return true;
+            case R.id.fr:
+                editor = getSharedPreferences("LANGUAGE", MODE_PRIVATE).edit();
+                editor.putString("language", "fr");
+                editor.apply();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

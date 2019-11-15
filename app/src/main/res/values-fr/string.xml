@@ -8,7 +8,6 @@
     <string name="language">Language</string>
     <string name="en">English</string>
     <string name="fr">Français</string>
-    <string name="sp">Español</string>
 
     <!--activity_main_menu-->
     <string name="btnWatchList">Voir la watch list</string>
@@ -24,8 +23,6 @@
     <string name="actionMovies">Films</string>
     <string name="actionPeople">Personnalités</string>
     <string name="actionTVShows">TV Shows</string>
-    <string name="actionCompanies">Compagnies</string>
-    <string name="actionCollection">Collections</string>
 
     <string name="hintSearch">Chercher un film</string>
 
