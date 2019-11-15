@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@drawable/description_background"
     tools:context=".activities.FilmDescriptionActivity">
 
     <LinearLayout
@@ -34,7 +35,7 @@
             android:id="@+id/tvMovieTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="#01d277"
             android:textSize="30sp"
             android:textAlignment="center"/>
 
@@ -42,6 +43,7 @@
             android:id="@+id/tvMovieTagline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textAlignment="center"/>
 
@@ -49,6 +51,7 @@
             android:id="@+id/tvMovieOverview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_margin="10sp"
             android:justificationMode="inter_word"/>
 
@@ -56,7 +59,7 @@
             android:id="@+id/tvMovieReleaseDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -64,7 +67,7 @@
             android:id="@+id/tvMovieVoteAverage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -72,7 +75,7 @@
             android:id="@+id/tvMovieVoteCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -80,7 +83,7 @@
             android:id="@+id/tvMovieBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -88,7 +91,7 @@
             android:id="@+id/tvMovieGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -96,7 +99,7 @@
             android:id="@+id/tvMovieProdCompanies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
