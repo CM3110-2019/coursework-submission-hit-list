@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/description_background"
+    android:background="@drawable/background_people_blurred"
     tools:context=".activities.PeopleDescriptionActvity">
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvPeName"
             android:layout_marginTop="20dp"
-            android:textColor="@android:color/black"
+            android:textColor="#01d277"
             android:textSize="30sp"
             android:textAlignment="center"/>
 
@@ -44,6 +44,7 @@
             android:id="@+id/tvPeBiography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_margin="10sp"
             android:justificationMode="inter_word"/>
 
@@ -51,7 +52,7 @@
             android:id="@+id/tvBirthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_margin="10sp"/>
 
@@ -59,7 +60,7 @@
             android:id="@+id/tvKnownforDepartment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_margin="10sp"/>
 
@@ -67,7 +68,7 @@
             android:id="@+id/tvPeAKA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 

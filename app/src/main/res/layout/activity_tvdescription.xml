@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_people_blurred"
     android:layout_height="match_parent"
     tools:context=".activities.TVDescriptionActivity">
 
@@ -35,7 +36,7 @@
             android:id="@+id/tvTvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="#01d277"
             android:textSize="30sp"
             android:textAlignment="center"/>
 
@@ -44,13 +45,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
+            android:textColor="@android:color/white"
             android:justificationMode="inter_word"/>
 
         <TextView
             android:id="@+id/tvTvFirstAirDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -58,7 +60,7 @@
             android:id="@+id/tvTvVoteAverage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -66,7 +68,7 @@
             android:id="@+id/tvTvVoteCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -74,7 +76,7 @@
             android:id="@+id/tvTvGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
@@ -82,7 +84,7 @@
             android:id="@+id/tvTvProdCompanies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"/>
 
