@@ -2,7 +2,9 @@ package rgu.com.hitlist;
 
 import android.content.Context;
 import android.widget.AutoCompleteTextView;
+import android.widget.SearchView;
 
+import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import rgu.com.hitlist.activities.MainActivity;
+import rgu.com.hitlist.activities.SearchActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
@@ -32,5 +35,16 @@ public class MainActivityTest {
     public void testSearchButton() {
         onView(withId(R.id.actionSearch)).perform(click()); // click on search
         onView(isAssignableFrom(AutoCompleteTextView.class)).perform(typeText("query"), pressImeActionButton()); // type a query and press enter
+    }
+
+    @Test
+    public void testLanguageButton() {
+        onView(withId(R.id.actionLanguage)).perform(click());
+        onView(isAssignableFrom(MenuPopupWindow.MenuDropDownListView.class)).perform(click());
+    }
+
+    @Test
+    public void testAdapterView() {
+        onView(withId(R.id.rvTrending)).perform(click());
     }
 }
