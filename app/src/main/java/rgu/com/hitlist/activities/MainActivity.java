@@ -42,7 +42,6 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener{
 
-    WatchlistDatabaseHelper userDB;
     TrendingRecyclerViewAdapter adapter; //Need different adapter
 
     List<Media> trendingMovieData;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getTrendings();
         //creates the empty database when the MainActivity is created
-        userDB = new WatchlistDatabaseHelper(this);
 
         Log.d("debug", Locale.getDefault().getLanguage());
         prefs = getSharedPreferences("LANGUAGE", MODE_PRIVATE);
