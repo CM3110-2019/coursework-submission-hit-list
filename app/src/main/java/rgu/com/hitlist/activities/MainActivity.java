@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.android.volley.Response;
@@ -25,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,7 +34,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import rgu.com.hitlist.R;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
-import rgu.com.hitlist.database.WatchlistDatabaseHelper;
 import rgu.com.hitlist.model.Media;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.model.People;
