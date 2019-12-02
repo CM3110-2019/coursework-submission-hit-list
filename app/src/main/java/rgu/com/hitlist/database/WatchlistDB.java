@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 
-@Database(entities = {WatchListItem.class}, version = 1)
+@Database(entities = {WatchListItem.class}, version = 1, exportSchema = false)
 public abstract class WatchlistDB extends RoomDatabase {
 
     public static WatchlistDB instance;
@@ -43,7 +43,7 @@ public abstract class WatchlistDB extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //creating a test to see that i can populate the db
-            DAO.insert(new WatchListItem("1","a","a test","live"));
+            DAO.insert(new WatchListItem("1","a","a test","00/00/0000"));
             return null;
         }
     }

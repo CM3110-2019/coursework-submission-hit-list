@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.database.DAO;
+import rgu.com.hitlist.database.WatchListItem;
+import rgu.com.hitlist.database.WatchlistDB;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
@@ -11,6 +14,7 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,11 +35,14 @@ import java.util.Map;
 public class TVDescriptionActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener, View.OnClickListener {
 
     Tv tv;
+    private DAO DAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvdescription);
+
+        this.DAO = WatchlistDB.getInstance(this).DAO();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -68,11 +76,33 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
         }
     }
 
+    class InsertTVWatchList extends AsyncTask<WatchListItem, Void, Void> {
+
+        @Override
+        protected Void doInBackground(WatchListItem... watchListItems) {
+
+            DAO.insert(watchListItems[0]);
+
+            return null;
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnAddTvToWatchList:
-                Log.d("debug", "added to the wath list");
+                String id = this.tv.getName();
+                String original_name = this.tv.getOriginal_name();
+                String overview = this.tv.getOverview();
+                String status = this.tv.getStatus();
+
+                WatchListItem item =new WatchListItem(id,original_name,overview,status);
+                InsertTVWatchList insertTask = new InsertTVWatchList();
+                insertTask.execute(item);
+                Toast.makeText(this, "Added to your Watchlist", Toast.LENGTH_SHORT).show();
+                Log.d("debug", "added to the watch list");
+
+
                 break;
             case R.id.btnOpenTvHomepage:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tv.getHomepage())));

@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBar;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,15 +16,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.database.DAO;
+import rgu.com.hitlist.database.WatchListItem;
+import rgu.com.hitlist.database.WatchlistDB;
 import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.tmdbApi.DownloadImageTask;
 import rgu.com.hitlist.tmdbApi.FetchApi;
@@ -31,11 +37,14 @@ import rgu.com.hitlist.tmdbApi.FetchApi;
 public class FilmDescriptionActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener, View.OnClickListener {
 
     Movie movie;
+    private DAO DAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_description);
+
+        this.DAO = WatchlistDB.getInstance(this).DAO();
 
         //display the back button
         ActionBar actionBar = getSupportActionBar();
@@ -70,11 +79,36 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
         }
     }
 
+    class InsertWatchList extends AsyncTask<WatchListItem, Void, Void>{
+
+        @Override
+        protected Void doInBackground(WatchListItem... watchListItems) {
+
+            DAO.insert(watchListItems[0]);
+
+            return null;
+        }
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnAddToWatchList:
-                Log.d("debug", "added to the wath list");
+
+
+                String movieID=this.movie.getImdb_id();
+                String movieTitle=this.movie.getOriginal_title();
+                String movieDescription=this.movie.getOverview();
+                String movieStatus=this.movie.getRelease_date();
+
+                WatchListItem item =new WatchListItem(movieID,movieTitle,movieDescription,movieStatus);
+                InsertWatchList insertTask = new InsertWatchList();
+                insertTask.execute(item);
+                Toast.makeText(this, "Added to your Watchlist", Toast.LENGTH_SHORT).show();
+                Log.d("debug", "added to the watch list");
+
+
                 break;
             case R.id.btnOpenHomepage:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getHomepage())));
@@ -129,5 +163,6 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
     public void onErrorResponse(VolleyError error) {
 
     }
+
 
 }
