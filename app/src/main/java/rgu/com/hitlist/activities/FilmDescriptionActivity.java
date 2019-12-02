@@ -97,12 +97,13 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
             case R.id.btnAddToWatchList:
 
 
-                String movieID=this.movie.getImdb_id();
+                long movieID=this.movie.getId();
+                String id =  Long.toString(movieID);
                 String movieTitle=this.movie.getOriginal_title();
                 String movieDescription=this.movie.getOverview();
                 String movieStatus=this.movie.getRelease_date();
 
-                WatchListItem item =new WatchListItem(movieID,movieTitle,movieDescription,movieStatus);
+                WatchListItem item =new WatchListItem(id,movieTitle,movieDescription,movieStatus);
                 InsertWatchList insertTask = new InsertWatchList();
                 insertTask.execute(item);
                 Toast.makeText(this, "Added to your Watchlist", Toast.LENGTH_SHORT).show();

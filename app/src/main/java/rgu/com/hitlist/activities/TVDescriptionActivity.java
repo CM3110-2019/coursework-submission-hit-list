@@ -91,7 +91,8 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnAddTvToWatchList:
-                String id = this.tv.getName();
+                long tvID = this.tv.getId();
+                String id = Long.toString(tvID);
                 String original_name = this.tv.getOriginal_name();
                 String overview = this.tv.getOverview();
                 String status = this.tv.getStatus();
