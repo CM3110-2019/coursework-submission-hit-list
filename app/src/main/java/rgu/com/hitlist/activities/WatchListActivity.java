@@ -26,7 +26,6 @@ import java.util.List;
 import rgu.com.hitlist.database.DAO;
 import rgu.com.hitlist.database.WatchListItem;
 import rgu.com.hitlist.database.WatchlistDB;
-import rgu.com.hitlist.model.Movie;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
 
@@ -88,7 +87,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             super.onPostExecute(items);
             // use items to update the UI - e.g. create a new RecyclerView
 
-            Log.d("debug", "Found " + items.size() + " modules");
+            Log.d("debug", "Found " + items.size() + " items");
         }
     }
 

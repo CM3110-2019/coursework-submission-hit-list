@@ -1,5 +1,6 @@
 package rgu.com.hitlist.database;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,10 +9,13 @@ public class WatchListItem {
     @PrimaryKey(autoGenerate = true)
     private int db_id;
 
+    @ColumnInfo(name = "item_id")
     private long id;
 
+    @ColumnInfo(name  ="item_name")
     String name;
 
+    @ColumnInfo(name = "item_type")
     String type;
 
 
