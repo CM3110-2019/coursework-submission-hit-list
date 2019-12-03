@@ -2,6 +2,7 @@ package rgu.com.hitlist.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,8 +11,12 @@ import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,7 +33,9 @@ import rgu.com.hitlist.R;
 public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
     MyRecyclerViewAdapter adapter;
-    WatchlistDB watchlistDB;
+    private DAO DAO;
+
+
 
 
     @Override
@@ -36,9 +43,10 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         super.onCreate(savedInstanceState);
                 //recycler view updater
 
-                Toast.makeText(WatchListActivity.this, "database created", Toast.LENGTH_SHORT).show();
+        this.DAO = WatchlistDB.getInstance(this).DAO();
 
-                watchlistDB.getInstance(getApplicationContext());
+        GetAllItemsTask getTask = new GetAllItemsTask();
+        getTask.execute();
 
 
 
@@ -70,4 +78,23 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, FilmDescriptionActivity.class));
     }
+    class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
+        @Override
+        protected List<WatchListItem> doInBackground(Void... params) {
+            return DAO.getAllWatchListItems();
+        }
+
+        protected void onPreExecute(List<WatchListItem> items) {
+            super.onPostExecute(items);
+            // use items to update the UI - e.g. create a new RecyclerView
+
+            Log.d("debug", "Found " + items.size() + " modules");
+        }
+    }
+
+
+
+
+
+
 }

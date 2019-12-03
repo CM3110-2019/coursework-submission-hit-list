@@ -19,6 +19,6 @@ public interface DAO {
     @Delete
     void delete(WatchListItem WatchListItem);
 
-    @Query( "SELECT * FROM  watchlist_table ORDER BY id DESC")
-    LiveData<List<WatchListItem>> getAllWatchListItems();
+    @Query( "SELECT * FROM  watchlist_table ORDER BY db_id DESC")
+    List<WatchListItem> getAllWatchListItems();
 }

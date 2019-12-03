@@ -3,47 +3,42 @@ package rgu.com.hitlist.database;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Watchlist_table")
+@Entity(tableName = "watchlist_table")
 public class WatchListItem {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int db_id;
 
-    private String imdb_id;
+    private long id;
 
-    private String original_title;
+    String name;
 
-    private String overview;
+    String type;
 
-    private String status;
 
-    public WatchListItem(String imdb_id, String original_title, String overview, String status) {
-        this.imdb_id = imdb_id;
-        this.original_title = original_title;
-        this.overview = overview;
-        this.status = status;
+    public WatchListItem(long id, String name, String type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+
     }
 
-    public int getId() {
+    public int getDb_id() {
+        return db_id;
+    }
+
+    public void setDb_id(int db_id) {
+        this.db_id = db_id;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public String getImdb_id() {
-        return imdb_id;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public String getStatus() {
-        return status;
+    public String getType() {
+        return type;
     }
 }
