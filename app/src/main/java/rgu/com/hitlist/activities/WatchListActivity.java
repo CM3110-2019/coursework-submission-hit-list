@@ -56,12 +56,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         setContentView(R.layout.activity_watch_list);
         setTitle(R.string.titleWatchList);
 
-        // data to populate the RecyclerView with
-        /*List<Movie> data = new ArrayList<>();
-        data.add(new Movie("The Irishman"));
-        data.add(new Movie("title2"));
-        data.add(new Movie("title3"));
-        data.add(new Movie("title4"));*/
+
 
 
         // set up the RecyclerView
@@ -82,12 +77,18 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         protected List<WatchListItem> doInBackground(Void... params) {
             return DAO.getAllWatchListItems();
         }
-
-        protected void onPreExecute(List<WatchListItem> items) {
+        @Override
+        protected void onPostExecute(List<WatchListItem> items) {
             super.onPostExecute(items);
             // use items to update the UI - e.g. create a new RecyclerView
+            // data to populate the RecyclerView with
+                /*List<Movie> data = new ArrayList<>();
+                data.add(new Movie("The Irishman"));
+                data.add(new Movie("title2"));
+                data.add(new Movie("title3"));
+                data.add(new Movie("title4"));*/
 
-            Log.d("debug", "Found " + items.size() + " items");
+
         }
     }
 
