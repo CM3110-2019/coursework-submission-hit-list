@@ -21,4 +21,8 @@ public interface DAO {
 
     @Query( "SELECT * FROM  watchlist_table ORDER BY db_id DESC")
     List<WatchListItem> getAllWatchListItems();
+
+    @Query("DELETE FROM watchlist_table")
+    public void nukeTable();
 }
+
