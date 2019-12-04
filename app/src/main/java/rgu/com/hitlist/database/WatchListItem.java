@@ -16,15 +16,23 @@ public class WatchListItem {
     @ColumnInfo(name = "item_id")
     private long id;
 
+    @ColumnInfo(name  ="item_pop")
+    private float popularity;
+
+    @ColumnInfo(name  ="item_poster")
+    private String poster_path;
+
     @ColumnInfo(name  ="item_name")
-    String name;
+    private String name;
 
     @ColumnInfo(name = "item_type")
-    String type;
+    private String type;
 
 
-    public WatchListItem(long id, String name, String type) {
+    public WatchListItem(long id, String name,float popularity,String poster_path, String type) {
         this.id = id;
+        this.popularity = popularity;
+        this.poster_path = poster_path;
         this.name = name;
         this.type = type;
 
@@ -36,6 +44,14 @@ public class WatchListItem {
 
     public void setDb_id(int db_id) {
         this.db_id = db_id;
+    }
+
+    public float getPopularity() {
+        return popularity;
+    }
+
+    public String getPoster_path() {
+        return poster_path;
     }
 
     public long getId() {

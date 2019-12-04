@@ -92,10 +92,12 @@ public class TVDescriptionActivity extends AppCompatActivity implements Response
         switch (v.getId()) {
             case R.id.btnAddTvToWatchList:
                 long tvID = this.tv.getId();
+                float tvpopularity= this.tv.getPopularity();
+                String poster_path= this.tv.getPoster_path();
                 String name =this.tv.getName();
                 String type = "tv";
 
-                WatchListItem item =new WatchListItem(tvID,name,type);
+                WatchListItem item =new WatchListItem(tvID,name,tvpopularity,poster_path,type);
                 InsertTVWatchList insertTask = new InsertTVWatchList();
                 insertTask.execute(item);
                 Toast.makeText(this, "Added " +this.tv.getName()+" to your Watchlist", Toast.LENGTH_SHORT).show();
