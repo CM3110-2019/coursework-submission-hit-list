@@ -2,10 +2,14 @@ package rgu.com.hitlist.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "watchlist_table")
+@Entity(tableName = "watchlist_table",indices = {@Index(value = {"item_id",},
+        unique = true)})
 public class WatchListItem {
+
+
     @PrimaryKey(autoGenerate = true)
     private int db_id;
 

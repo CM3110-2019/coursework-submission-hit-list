@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 
-@Database(entities = {WatchListItem.class}, version = 3, exportSchema = false)
+@Database(entities = {WatchListItem.class}, version = 5, exportSchema = false)
 public abstract class WatchlistDB extends RoomDatabase {
 
     public static WatchlistDB instance;

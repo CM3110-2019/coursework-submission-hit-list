@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,12 +36,10 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
     private DAO DAO;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-                //recycler view updater
+        //recycler view updater
 
         this.DAO = WatchlistDB.getInstance(this).DAO();
 
@@ -48,15 +47,8 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         getTask.execute();
 
 
-
-
-
-
-
         setContentView(R.layout.activity_watch_list);
         setTitle(R.string.titleWatchList);
-
-
 
 
         // set up the RecyclerView
@@ -72,11 +64,13 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, FilmDescriptionActivity.class));
     }
+
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
         @Override
         protected List<WatchListItem> doInBackground(Void... params) {
             return DAO.getAllWatchListItems();
         }
+
         @Override
         protected void onPostExecute(List<WatchListItem> items) {
             super.onPostExecute(items);
@@ -89,7 +83,10 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
                 data.add(new Movie("title4"));*/
 
 
+
+
         }
+
     }
 
 
@@ -97,4 +94,16 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
 
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
