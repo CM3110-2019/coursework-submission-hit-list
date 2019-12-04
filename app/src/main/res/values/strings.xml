@@ -47,6 +47,7 @@
     <string name="tvDeathday">Died on : </string>
     <string name="tvAKA">Also known as : </string>
     <string name="tvKnownFor">Known for : </string>
+    <string name="delete_all">Delete All</string>
 
 
 </resources>

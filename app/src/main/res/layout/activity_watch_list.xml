@@ -7,6 +7,12 @@
     tools:context=".activities.SearchActivity"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_all" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWatchList"
         android:layout_width="match_parent"

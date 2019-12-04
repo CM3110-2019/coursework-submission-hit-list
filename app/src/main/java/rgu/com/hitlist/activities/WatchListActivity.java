@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +31,12 @@ import rgu.com.hitlist.database.WatchlistDB;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
 
-public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener {
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
+    // create a list of watchlistitems
+    public List<WatchListItem> allItems;
 
 
     @Override
@@ -49,14 +52,11 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
         setContentView(R.layout.activity_watch_list);
         setTitle(R.string.titleWatchList);
+        Button btnDeleteAll = findViewById(R.id.btnDeleteAll);
+        btnDeleteAll.setOnClickListener(this);
 
 
-        // set up the RecyclerView
-        /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, data);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);*/
+
     }
 
     @Override
@@ -65,28 +65,81 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         startActivity(new Intent(this, FilmDescriptionActivity.class));
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnDeleteAll:
+                DeleteWatchList deleteWatchList =new DeleteWatchList();
+                deleteWatchList.execute();
+
+                GetAllItemsTask updateAfterDelete= new GetAllItemsTask();
+                updateAfterDelete.execute();
+
+                break;
+        }
+    }
+
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
+
+
         @Override
         protected List<WatchListItem> doInBackground(Void... params) {
             return DAO.getAllWatchListItems();
         }
 
         @Override
-        protected void onPostExecute(List<WatchListItem> items) {
-            super.onPostExecute(items);
+        protected void onPreExecute() {
+            super.onPreExecute();
             // use items to update the UI - e.g. create a new RecyclerView
-            // data to populate the RecyclerView with
-                /*List<Movie> data = new ArrayList<>();
-                data.add(new Movie("The Irishman"));
-                data.add(new Movie("title2"));
-                data.add(new Movie("title3"));
-                data.add(new Movie("title4"));*/
-
-
-
+            // set up the RecyclerView
+            /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new MyRecyclerViewAdapter(this, data);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);*/
 
         }
 
+
+        @Override
+        protected void onPostExecute(List<WatchListItem> items) {
+            super.onPostExecute(items);
+
+            /*this was for testing it uses the buildNames function and puts it in a text box
+            i have removed the text box for the app going live
+            String namesList = buildNames(items);
+            int i =0;
+            TextView tvNames= findViewById(R.id.tvNames);
+            tvNames.setText(namesList);*/
+
+
+            //put the items fetched into the list made earlier
+            allItems = items;
+
+        }
+
+    }
+
+
+    /* this builds a a string of all the items names
+   private String buildNames(List<WatchListItem> items) {
+        StringBuilder names = new StringBuilder();
+        for (WatchListItem item : items){
+            names.append(item.getName()).append(" ");
+
+        }
+        return names.toString();
+    }*/
+
+    class DeleteWatchList extends AsyncTask<WatchListItem, Void, Void>{
+
+        @Override
+        protected Void doInBackground(WatchListItem... watchListItems) {
+
+            DAO.nukeTable();
+
+            return null;
+        }
     }
 
 
