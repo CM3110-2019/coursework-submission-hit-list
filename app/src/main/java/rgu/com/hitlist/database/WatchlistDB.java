@@ -1,13 +1,13 @@
 package rgu.com.hitlist.database;
 
-import androidx.annotation.NonNull;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
+
 
 import android.content.Context;
-import android.os.AsyncTask;
+
 
 @Database(entities = {WatchListItem.class}, version = 6, exportSchema = false)
 public abstract class WatchlistDB extends RoomDatabase {
