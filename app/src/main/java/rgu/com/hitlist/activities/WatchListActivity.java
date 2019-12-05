@@ -22,21 +22,39 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
 import rgu.com.hitlist.database.DAO;
 import rgu.com.hitlist.database.WatchListItem;
 import rgu.com.hitlist.database.WatchlistDB;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Media;
+import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.People;
+import rgu.com.hitlist.model.Tv;
+import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener {
+public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener , Response.Listener<String> ,Response.ErrorListener{
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
     // create a list of watchlistitems
     public List<WatchListItem> allItems;
+    List<Media> searchData;
+    String dataType;
 
 
     @Override
@@ -54,7 +72,6 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         setTitle(R.string.titleWatchList);
         Button btnDeleteAll = findViewById(R.id.btnDeleteAll);
         btnDeleteAll.setOnClickListener(this);
-
 
 
     }
@@ -79,6 +96,46 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         }
     }
 
+    @Override
+    public void onResponse(String response) {
+        try {
+        JSONObject jsonResponse = new JSONObject();
+        JSONArray results = new JSONArray();
+        jsonResponse = new JSONObject(response);
+        results = jsonResponse.getJSONArray("results");
+        String res =  results.toString();
+
+            switch(dataType) {
+                case "movie":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
+                    break;
+                case "tv":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Tv>>(){}.getType());
+                    break;
+                case "person":
+                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<People>>(){}.getType());
+                    break;
+
+            }
+
+            if(searchData.size() == 0) {
+                Toast.makeText(this, getString(R.string.toastNoResult), Toast.LENGTH_LONG).show();
+            } /*else {
+                Toast.makeText(this, getString(R.string.toastResult, String.valueOf(searchData.size())), Toast.LENGTH_LONG).show();
+            }*/ // the api always returns 20 results
+
+            RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            adapter = new MyRecyclerViewAdapter(this, searchData);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+    }
+
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
 
 
@@ -90,7 +147,10 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
             // use items to update the UI - e.g. create a new RecyclerView
+
+
             // set up the RecyclerView
             /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +174,17 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
 
             //put the items fetched into the list made earlier
-            allItems = items;
+            List<WatchListItem> allItems = items;
+            for(WatchListItem watchListItem : allItems){
+                if(watchListItem.getType().equals("movie")){
+                    dataType = "movie";
+                    FetchApi.GetMedia(Long.toString(watchListItem.getId()), getApplicationContext(), "movie", WatchListActivity.this, WatchListActivity.this);
+                }
+                else if(watchListItem.getType().equals("tv")){
+                    dataType = "tv";
+                    FetchApi.GetMedia((Long.toString(watchListItem.getId())),getApplicationContext(), "tv",WatchListActivity.this, WatchListActivity.this);
+                }
+            }
 
         }
 
@@ -130,6 +200,12 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         }
         return names.toString();
     }*/
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d("debug", error.toString());
+    }
+
 
     class DeleteWatchList extends AsyncTask<WatchListItem, Void, Void>{
 
