@@ -95,6 +95,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             case R.id.btnDeleteAll:
                 DeleteWatchList deleteWatchList =new DeleteWatchList();
                 deleteWatchList.execute();
+                data.clear();
 
                 GetAllItemsTask updateAfterDelete= new GetAllItemsTask();
                 updateAfterDelete.execute();
