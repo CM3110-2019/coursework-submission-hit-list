@@ -111,26 +111,11 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             return DAO.getAllWatchListItems();
         }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // use items to update the UI - e.g. create a new RecyclerView
-            // set up the RecyclerView
-            /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new MyRecyclerViewAdapter(this, data);
-            adapter.setClickListener(this);
-            recyclerView.setAdapter(adapter);*/
-        }
 
         @Override
         protected void onPostExecute(List<WatchListItem> items) {
             super.onPostExecute(items);
 
-
-            /*String namesList = buildNames(items);
-            TextView tvNames= findViewById(R.id.tvNames);
-            tvNames.setText(namesList);*/
 
 
             //put the items fetched into the global list
@@ -166,16 +151,6 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
     }
 
 
-
-   private String buildNames(List<WatchListItem> items) {
-        StringBuilder names = new StringBuilder();
-        for (WatchListItem item : items){
-            names.append("NAME: "+item.getName()).append(" TYPE: "+item.getType()).append("\n");
-
-        }
-
-        return names.toString();
-    }
 
     class DeleteWatchList extends AsyncTask<WatchListItem, Void, Void>{
 
