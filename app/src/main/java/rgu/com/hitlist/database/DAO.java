@@ -23,6 +23,6 @@ public interface DAO {
     List<WatchListItem> getAllWatchListItems();
 
     @Query("DELETE FROM watchlist_table")
-    public void nukeTable();
+    public void destroyTable();
 }
 
