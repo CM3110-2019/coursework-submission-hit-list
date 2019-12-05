@@ -79,6 +79,7 @@ public class FilmDescriptionActivity extends AppCompatActivity implements Respon
         }
     }
 
+    //based on the lecture on Async Tasks
     class InsertWatchList extends AsyncTask<WatchListItem, Void, Void>{
 
         @Override
