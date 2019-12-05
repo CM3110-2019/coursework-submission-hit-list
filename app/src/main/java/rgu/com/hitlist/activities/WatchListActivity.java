@@ -119,6 +119,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             names.append("NAME: "+item.getName()).append(" TYPE: "+item.getType()).append("\n");
 
         }
+
         return names.toString();
     }
 
