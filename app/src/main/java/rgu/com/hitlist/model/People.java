@@ -16,6 +16,11 @@ public class People extends Media {
     private boolean adult;
     private String imdb_id;
 
+    public People(long id, String title, float popularity, String poster_path) {
+        super(id, popularity, poster_path);
+        this.name = title;
+    }
+
     @Override
     public String toString() {
         return "People{" +

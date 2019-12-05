@@ -22,6 +22,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,39 +39,54 @@ import rgu.com.hitlist.database.WatchListItem;
 import rgu.com.hitlist.database.WatchlistDB;
 import rgu.com.hitlist.adapter.MyRecyclerViewAdapter;
 import rgu.com.hitlist.R;
+import rgu.com.hitlist.model.Media;
+import rgu.com.hitlist.model.Movie;
+import rgu.com.hitlist.model.People;
+import rgu.com.hitlist.model.Tv;
+import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener {
+public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener, Response.ErrorListener {
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
     // create a list of watchlistitems
     public List<WatchListItem> allItems;
+    List<Media> data = new ArrayList<>();
+    public Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //recycler view updater
+        context = getApplicationContext();
 
         this.DAO = WatchlistDB.getInstance(this).DAO();
 
         GetAllItemsTask getTask = new GetAllItemsTask();
         getTask.execute();
 
-
         setContentView(R.layout.activity_watch_list);
         setTitle(R.string.titleWatchList);
         Button btnDeleteAll = findViewById(R.id.btnDeleteAll);
         btnDeleteAll.setOnClickListener(this);
 
-
-
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, FilmDescriptionActivity.class));
+        //startActivity(new Intent(this, FilmDescriptionActivity.class));
+
+        Media m = data.get(position);
+        if(m instanceof Movie) {
+            Intent movieIntent = new Intent(this, FilmDescriptionActivity.class);
+            movieIntent.putExtra("movie", m);
+            startActivity(movieIntent);
+        } else if(m instanceof Tv) {
+            Intent TvIntent = new Intent(this, TVDescriptionActivity.class);
+            TvIntent.putExtra("tv", m);
+            startActivity(TvIntent);
+        }
     }
 
     @Override
@@ -81,7 +105,6 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
 
-
         @Override
         protected List<WatchListItem> doInBackground(Void... params) {
             return DAO.getAllWatchListItems();
@@ -97,9 +120,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             adapter = new MyRecyclerViewAdapter(this, data);
             adapter.setClickListener(this);
             recyclerView.setAdapter(adapter);*/
-
         }
-
 
         @Override
         protected void onPostExecute(List<WatchListItem> items) {
@@ -115,8 +136,33 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
             //put the items fetched into the list made earlier
             allItems = items;
-
+            setAdapter();
         }
+
+    }
+
+    void setAdapter() {
+        //Log.d("debug", allItems+"");
+
+        for(WatchListItem i : allItems) {
+            switch(i.getType()) {
+                case "movie":
+                    data.add(new Movie(i.getId(), i.getName(), i.getPopularity(), i.getPoster_path()));
+                    break;
+                case "tv":
+                    data.add(new Tv(i.getId(), i.getName(), i.getPopularity(), i.getPoster_path()));
+                    break;
+            }
+        }
+
+        Log.d("debug", data+"");
+
+
+        RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyRecyclerViewAdapter(this, data);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -142,12 +188,10 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         }
     }
 
-
-
-
-
-
-
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d("debug", "error");
+    }
 }
 
 

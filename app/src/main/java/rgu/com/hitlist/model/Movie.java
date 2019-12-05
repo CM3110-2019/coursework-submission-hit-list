@@ -34,9 +34,12 @@ public class Movie extends Media implements Serializable {
     private float vote_average;
     private int vote_count;
 
-    public Movie(String title) {
+    public Movie(long id, String title, float popularity, String poster_path) {
+        super(id, popularity, poster_path);
         this.title = title;
     }
+
+
 
     @Override
     public String toString() {

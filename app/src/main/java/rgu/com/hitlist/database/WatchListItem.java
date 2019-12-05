@@ -16,13 +16,13 @@ public class WatchListItem {
     @ColumnInfo(name = "item_id")
     private long id;
 
-    @ColumnInfo(name  ="item_pop")
+    @ColumnInfo(name ="item_pop")
     private float popularity;
 
-    @ColumnInfo(name  ="item_poster")
+    @ColumnInfo(name ="item_poster")
     private String poster_path;
 
-    @ColumnInfo(name  ="item_name")
+    @ColumnInfo(name ="item_name")
     private String name;
 
     @ColumnInfo(name = "item_type")
@@ -64,5 +64,12 @@ public class WatchListItem {
 
     public String getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "WatchListItem{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -30,6 +30,12 @@ public class Tv extends Media implements Serializable {
     private String overview;
     private List<Map<String, String>> production_companies;
 
+    public Tv(long id, String title, float popularity, String poster_path) {
+        super(id, popularity, poster_path);
+        this.name = title;
+    }
+
+
     @Override
     public String toString() {
         return "Tv{" +
