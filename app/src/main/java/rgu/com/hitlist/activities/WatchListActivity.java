@@ -163,6 +163,16 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         }
     }
 
+    class DeleteWatchListItem extends AsyncTask<WatchListItem, Void, Void>{
+
+        @Override
+        protected Void doInBackground(WatchListItem... watchListItems) {
+
+            DAO.delete(watchListItems[0]);
+            return null;
+        }
+    }
+
     @Override
     public void onErrorResponse(VolleyError error) {
         Log.d("debug", "error");
