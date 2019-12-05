@@ -127,9 +127,9 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             super.onPostExecute(items);
 
 
-            String namesList = buildNames(items);
+            /*String namesList = buildNames(items);
             TextView tvNames= findViewById(R.id.tvNames);
-            tvNames.setText(namesList);
+            tvNames.setText(namesList);*/
 
 
             //put the items fetched into the global list
