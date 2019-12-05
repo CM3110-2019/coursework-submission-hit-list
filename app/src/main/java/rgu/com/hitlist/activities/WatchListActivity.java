@@ -34,7 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import rgu.com.hitlist.adapter.TrendingRecyclerViewAdapter;
 import rgu.com.hitlist.database.DAO;
 import rgu.com.hitlist.database.WatchListItem;
 import rgu.com.hitlist.database.WatchlistDB;
@@ -46,7 +45,7 @@ import rgu.com.hitlist.model.People;
 import rgu.com.hitlist.model.Tv;
 import rgu.com.hitlist.tmdbApi.FetchApi;
 
-public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener , Response.Listener<String> ,Response.ErrorListener{
+public class WatchListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener, View.OnClickListener, Response.ErrorListener {
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
@@ -103,46 +102,6 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
                 break;
         }
-    }
-
-    @Override
-    public void onResponse(String response) {
-        try {
-        JSONObject jsonResponse = new JSONObject();
-        JSONArray results = new JSONArray();
-        jsonResponse = new JSONObject(response);
-        results = jsonResponse.getJSONArray("results");
-        String res =  results.toString();
-
-            switch(dataType) {
-                case "movie":
-                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Movie>>(){}.getType());
-                    break;
-                case "tv":
-                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<Tv>>(){}.getType());
-                    break;
-                case "person":
-                    searchData = new Gson().fromJson(results.toString(), new TypeToken<List<People>>(){}.getType());
-                    break;
-
-            }
-
-            if(searchData.size() == 0) {
-                Toast.makeText(this, getString(R.string.toastNoResult), Toast.LENGTH_LONG).show();
-            } /*else {
-                Toast.makeText(this, getString(R.string.toastResult, String.valueOf(searchData.size())), Toast.LENGTH_LONG).show();
-            }*/ // the api always returns 20 results
-
-            RecyclerView recyclerView = findViewById(R.id.rvWatchList);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            adapter = new MyRecyclerViewAdapter(this, searchData);
-            adapter.setClickListener(this);
-            recyclerView.setAdapter(adapter);
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
-
     }
 
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
