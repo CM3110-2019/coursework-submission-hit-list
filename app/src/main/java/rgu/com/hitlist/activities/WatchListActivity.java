@@ -49,7 +49,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
-    // create a list of watchlistitems
+    // create a global list of watchlistitems
     public List<WatchListItem> allItems;
     List<Media> data = new ArrayList<>();
     public Context context;
@@ -126,15 +126,13 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         protected void onPostExecute(List<WatchListItem> items) {
             super.onPostExecute(items);
 
-            /*this was for testing it uses the buildNames function and puts it in a text box
-            i have removed the text box for the app going live
+
             String namesList = buildNames(items);
-            int i =0;
             TextView tvNames= findViewById(R.id.tvNames);
-            tvNames.setText(namesList);*/
+            tvNames.setText(namesList);
 
 
-            //put the items fetched into the list made earlier
+            //put the items fetched into the global list
             allItems = items;
             setAdapter();
         }
@@ -167,22 +165,23 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
     }
 
 
-    /* this builds a a string of all the items names
+
    private String buildNames(List<WatchListItem> items) {
         StringBuilder names = new StringBuilder();
         for (WatchListItem item : items){
-            names.append(item.getName()).append(" ");
+            names.append("NAME: "+item.getName()).append(" TYPE: "+item.getType()).append("\n");
 
         }
+
         return names.toString();
-    }*/
+    }
 
     class DeleteWatchList extends AsyncTask<WatchListItem, Void, Void>{
 
         @Override
         protected Void doInBackground(WatchListItem... watchListItems) {
 
-            DAO.nukeTable();
+            DAO.destroyTable();
 
             return null;
         }
