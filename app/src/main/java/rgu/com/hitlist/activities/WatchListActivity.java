@@ -25,7 +25,6 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -51,35 +50,44 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
     MyRecyclerViewAdapter adapter;
     private DAO DAO;
-    // create a list of watchlistitems
+    // create a global list of watchlistitems
     public List<WatchListItem> allItems;
-    List<Media> searchData;
-    String dataType;
+    List<Media> data = new ArrayList<>();
+    public Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //recycler view updater
+        context = getApplicationContext();
 
         this.DAO = WatchlistDB.getInstance(this).DAO();
 
         GetAllItemsTask getTask = new GetAllItemsTask();
         getTask.execute();
 
-
         setContentView(R.layout.activity_watch_list);
         setTitle(R.string.titleWatchList);
         Button btnDeleteAll = findViewById(R.id.btnDeleteAll);
         btnDeleteAll.setOnClickListener(this);
 
-
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, FilmDescriptionActivity.class));
+        //startActivity(new Intent(this, FilmDescriptionActivity.class));
+
+        Media m = data.get(position);
+        if(m instanceof Movie) {
+            Intent movieIntent = new Intent(this, FilmDescriptionActivity.class);
+            movieIntent.putExtra("movie", m);
+            startActivity(movieIntent);
+        } else if(m instanceof Tv) {
+            Intent TvIntent = new Intent(this, TVDescriptionActivity.class);
+            TvIntent.putExtra("tv", m);
+            startActivity(TvIntent);
+        }
     }
 
     @Override
@@ -88,6 +96,7 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
             case R.id.btnDeleteAll:
                 DeleteWatchList deleteWatchList =new DeleteWatchList();
                 deleteWatchList.execute();
+                data.clear();
 
                 GetAllItemsTask updateAfterDelete= new GetAllItemsTask();
                 updateAfterDelete.execute();
@@ -138,26 +147,9 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
 
     class GetAllItemsTask extends AsyncTask<Void, Void, List<WatchListItem>> {
 
-
         @Override
         protected List<WatchListItem> doInBackground(Void... params) {
             return DAO.getAllWatchListItems();
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            // use items to update the UI - e.g. create a new RecyclerView
-
-
-            // set up the RecyclerView
-            /*RecyclerView recyclerView = findViewById(R.id.rvWatchList);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new MyRecyclerViewAdapter(this, data);
-            adapter.setClickListener(this);
-            recyclerView.setAdapter(adapter);*/
-
         }
 
 
@@ -165,46 +157,40 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         protected void onPostExecute(List<WatchListItem> items) {
             super.onPostExecute(items);
 
-            /*this was for testing it uses the buildNames function and puts it in a text box
-            i have removed the text box for the app going live
-            String namesList = buildNames(items);
-            int i =0;
-            TextView tvNames= findViewById(R.id.tvNames);
-            tvNames.setText(namesList);*/
 
 
-            //put the items fetched into the list made earlier
-            List<WatchListItem> allItems = items;
-            for(WatchListItem watchListItem : allItems){
-                if(watchListItem.getType().equals("movie")){
-                    dataType = "movie";
-                    FetchApi.GetMedia(Long.toString(watchListItem.getId()), getApplicationContext(), "movie", WatchListActivity.this, WatchListActivity.this);
-                }
-                else if(watchListItem.getType().equals("tv")){
-                    dataType = "tv";
-                    FetchApi.GetMedia((Long.toString(watchListItem.getId())),getApplicationContext(), "tv",WatchListActivity.this, WatchListActivity.this);
-                }
+            //put the items fetched into the global list
+            allItems = items;
+            setAdapter();
+        }
+
+    }
+
+    void setAdapter() {
+        //Log.d("debug", allItems+"");
+
+        for(WatchListItem i : allItems) {
+            switch(i.getType()) {
+                case "movie":
+                    data.add(new Movie(i.getId(), i.getName(), i.getPopularity(), i.getPoster_path()));
+                    break;
+                case "tv":
+                    data.add(new Tv(i.getId(), i.getName(), i.getPopularity(), i.getPoster_path()));
+                    break;
             }
-
         }
+
+        Log.d("debug", data+"");
+
+
+        RecyclerView recyclerView = findViewById(R.id.rvWatchList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyRecyclerViewAdapter(this, data);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
 
     }
 
-
-    /* this builds a a string of all the items names
-   private String buildNames(List<WatchListItem> items) {
-        StringBuilder names = new StringBuilder();
-        for (WatchListItem item : items){
-            names.append(item.getName()).append(" ");
-
-        }
-        return names.toString();
-    }*/
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Log.d("debug", error.toString());
-    }
 
 
     class DeleteWatchList extends AsyncTask<WatchListItem, Void, Void>{
@@ -212,27 +198,14 @@ public class WatchListActivity extends AppCompatActivity implements MyRecyclerVi
         @Override
         protected Void doInBackground(WatchListItem... watchListItems) {
 
-            DAO.nukeTable();
+            DAO.destroyTable();
 
             return null;
         }
     }
 
-
-
-
-
-
-
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d("debug", "error");
+    }
 }
-
-
-
-
-
-
-
-
-
-
-

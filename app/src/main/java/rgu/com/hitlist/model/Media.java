@@ -11,6 +11,12 @@ public abstract class Media implements Serializable {
     private String poster_path;
     private String profile_path;
 
+    public Media(long id, float popularity, String poster_path) {
+        this.id = id;
+        this.popularity = popularity;
+        this.poster_path = poster_path;
+    }
+
     @Override
     public String toString() {
         return "Media{" +
